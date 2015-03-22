@@ -1,0 +1,36 @@
+{
+  "name": "boosh-api-v3",
+  "version": "0.1.0",
+  "description": "",
+  "main": "app.js",
+  "engines": {
+    "node": "^0.10"
+  },
+  "scripts": {
+    "test": "echo 'No tests yet...'",
+    "start": "./bin/www"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "Ian Sinnott <ian@iansinnott.com> (http://iansinnott.com)",
+  "license": "MIT",
+  "homepage": "",
+  "devDependencies": {
+    "babel": "^4.7.16",
+    "babel-core": "^4.7.16",
+    "babel-loader": "^4.2.0",
+    "css-loader": "^0.9.1",
+    "react": "^0.13.1",
+    "react-hot-loader": "^1.2.3",
+    "style-loader": "^0.8.3",
+    "stylus-loader": "^1.0.0",
+    "webpack": "^1.7.3",
+    "webpack-dev-server": "^1.7.0"
+  },
+  "dependencies": {
+    "react": "^0.13.1",
+    "react-router": "^0.13.1"
+  }
+}
