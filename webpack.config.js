@@ -1,4 +1,9 @@
-var webpack = require('webpack');
+var webpack = require('webpack'),
+
+    // Stylus
+    axis        = require('axis'),
+    rupture     = require('rupture'),
+    typographic = require('typographic');
 
 module.exports = {
 
@@ -22,12 +27,18 @@ module.exports = {
   ],
 
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js']
   },
 
   module: {
     loaders: [
-      { test: /\.js?$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/ }
+      { test: /\.js?$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/ },
+      { test: /\.styl$/, loaders: ['style', 'css', 'stylus'] }
     ]
+  },
+
+  stylus: {
+    use: [axis(), rupture(), typographic()]
   }
+
 };

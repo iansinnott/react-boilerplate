@@ -1,20 +1,8 @@
 var React  = require('react'),
-    Router = require('router'),
+    Router = require('react-router'),
     { Link, Route, RouteHandler, DefaultRoute } = Router;
 
-var App = React.createClass({
-  render() {
-    return (
-      <div class="app">
-        <header>
-          <Link to="inbox">Inbox</Link>
-          <Link to="account">Account</Link>
-        </header>
-        <RouteHandler/>
-      </div>
-    );
-  }
-});
+var { App, Inbox, Account } = require('./app');
 
 var routes = (
   <Route path='/' handler={ App }>
@@ -25,6 +13,7 @@ var routes = (
 
 document.addEventListener('DOMContentLoaded', () => {
   Router.run(routes, Handler => {
-    React.render(<Handler/>, document.body);
+    React.render(<Handler/>, document.getElementById('root'));
   });
 });
+
