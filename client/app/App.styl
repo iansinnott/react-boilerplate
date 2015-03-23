@@ -1,16 +1,96 @@
 global-reset()
+
+// Typography {{{
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 @require 'typographic'
 
-t-presets(major-sixth)
-t-headers(helvetica)
+t-presets(major-third)
 
 html
-  font-family garamond
+  font-family helvetica
   font-size 18px
+
+// }}} END Typography
+
+// Vars {{{
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+mono = Consolas, 'Liberation Mono', Menlo, Courier, monospace
+
+light-gray = #E7E6E4
+off-white = #EDEDEF
+border-gray = #979797
+text-black = #5F5F5F
+
+// }}} END Vars
+
+// General {{{
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 *
   box-sizing border-box
 
 body
-  background green
+  background off-white
+  color text-black
 
+li
+  list-style disc
+
+pre
+  font-family mono
+  line-height 1.5
+  border-radius 3px
+  border 1px solid border-gray
+
+// }}} END General
+
+.container
+  padding 50px 20px
+
+.app
+  background off-white
+
+.banner
+  background url(/react-logo.png) no-repeat center 20% light-gray
+  text-align center
+  padding-top 200px
+  border-bottom 1px solid border-gray
+
+  &>h1
+    font-size 90px
+    color border-gray
+    text-shadow 0 1px 0 white
+    line-height 1
+    padding-bottom 100px
+    margin 0
+
+.app
+  &>.container
+    max-width 800px
+    margin 0 auto
+nav
+  margin-top -101px
+  margin-bottom 50px
+  text-align center
+
+  a
+    display inline-block
+    color border-gray
+    text-decoration none
+    padding 0 20px
+    line-height 50px
+    border-radius 3px 3px 0 0
+    border 1px solid transparent
+
+    &.active
+      background off-white
+      border-color border-gray
+      border-bottom none
+
+.usage
+  pre
+    background light-gray
+    padding .6rem
+    margin .6rem 0

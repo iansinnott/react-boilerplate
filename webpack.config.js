@@ -44,7 +44,8 @@ module.exports = {
     loaders: [
       { test: /\.js?$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/ },
       { test: /\.styl$/, loaders: ['style', 'css', 'stylus'] },
-      { test: /\.(png|jpg|gif|svg)$/, loaders: ['file?name=[name].[ext]'] }
+      { test: /\.(png|jpg|gif|svg)$/, loaders: ['file?name=[name].[ext]'] },
+      { test: /\.md$/, loaders: ['html', 'markdown'] }
     ]
   },
 

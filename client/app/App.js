@@ -4,45 +4,62 @@ var React  = require('react'),
 
 require('./App.styl');
 
-require('./react-logo.png');
+require('./react-logo.png'); // Used as a bg image in stylus
+
+var readme = { __html: require('../../README.md') };
+var resources = { __html: require('./resources.md') };
 
 var App = React.createClass({
   render() {
     return (
       <div className="app">
-        <header>
-          <Link to="inbox">Inbox</Link>
-          <Link to="account">Account</Link>
-        </header>
-        <RouteHandler/>
+        <div className="banner">
+          <h1>React<br/>Boilerplate</h1>
+        </div>
+        <div className="container">
+          <nav>
+            <Link to="readme">Readme</Link>
+            <Link to="resources">Resources</Link>
+            <Link to="feed">Feed</Link>
+          </nav>
+          <RouteHandler/>
+        </div>
       </div>
     );
   }
 });
 
-var Inbox = React.createClass({
+var Readme = React.createClass({
   render() {
-    return (
-      <div className="inbox">
-        <h1>Inbox</h1>
-      </div>
-    );
+    return <div className='readme' dangerouslySetInnerHTML={ readme }/>;
   }
 });
 
-var Account = React.createClass({
+var Resources = React.createClass({
   render() {
+    return <div className='resources' dangerouslySetInnerHTML={ resources }/>;
+  }
+})
+
+var Feed = React.createClass({
+  render() {
+    var tweets = [
+      { text: 'Tweets about react!' },
+      { text: "So much win when you're tweeting about react" },
+      { text: "Gotta love dem tweets 'marite?" }
+    ].map( (tweet, i) => <div className='tweet' key={i}>{tweet.text}</div> );
+
     return (
-      <div className="account">
-        <h1>Account</h1>
+      <div className="feed">
+        <h1>Feed</h1>
+        <p>A bunch of tweets about react</p>
+        <div className="tweets">
+          { tweets }
+        </div>
       </div>
     );
   }
 });
 
-module.exports = {
-  App,
-  Inbox,
-  Account
-};
+module.exports = { App, Readme, Resources, Feed };
 
