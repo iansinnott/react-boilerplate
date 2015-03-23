@@ -44,6 +44,12 @@ pre
   border-radius 3px
   border 1px solid border-gray
 
+a
+  color blue
+  text-decoration none
+  &:hover
+    text-decoration underline
+
 // }}} END General
 
 .container
@@ -84,6 +90,9 @@ nav
     border-radius 3px 3px 0 0
     border 1px solid transparent
 
+    &:hover
+      text-decoration none
+
     &.active
       background off-white
       border-color border-gray
@@ -94,3 +103,14 @@ nav
     background light-gray
     padding .6rem
     margin .6rem 0
+
+// FIXME
+// This should only be temporary as we wouldn't normally define tweet-specific
+// styles here in the global stylesheet
+.tweet
+  twitter-blue = #59ADEB
+  line-height 1.5
+
+  i
+    margin-right 10px
+    color twitter-blue

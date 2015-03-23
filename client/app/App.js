@@ -76,8 +76,16 @@ var Feed = React.createClass({
     var tweets = [
       { text: 'Tweets about react!' },
       { text: "So much win when you're tweeting about react" },
-      { text: "Gotta love dem tweets 'marite?" }
-    ].map( (tweet, i) => <div className='tweet' key={i}>{tweet.text}</div> );
+      { text: "Gotta love dem tweets 'marite?" },
+      { text: "Just kidding, these aren't real tweets..." }
+    ].map((tweet, i) => {
+      return (
+        <div className='tweet' key={i}>
+          <i className='fa fa-twitter'/>
+          {tweet.text}
+        </div>
+      )
+    });
 
     return (
       <div className="feed">
