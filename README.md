@@ -17,10 +17,10 @@ A boilerplate for building new apps using [React][react] and [React Router][rr].
 ## Usage
 
 ```bash
-> git clone [this repo] new-project-name
-> cd new-project-name
-> npm install
-> gulp
+$ git clone https://github.com/iansinnott/react-boilerplate.git new-project-name
+$ cd new-project-name
+$ npm install
+$ gulp
 ```
 
 That's it. Now you're ready to start building.
@@ -43,3 +43,9 @@ This of course goes for CSS or any of it's preprocessors. You can even apply thi
 
 [react]: http://facebook.github.io/react/
 [rr]: https://github.com/rackt/react-router
+
+## Troubleshooting
+
+#### Live reload (aka Hot Module Replacement) doesn't work.
+
+One of the gotchas of the hot react loader seems to be that it will not hot work with files in the root of the client directory. If you edit `client/index.js` or `client/Router.js` it will not do a live reload, you will have to to it manually.
