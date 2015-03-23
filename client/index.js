@@ -6,18 +6,9 @@
  */
 
 var React  = require('react'),
-    Router = require('react-router'),
-    { Link, Route, RouteHandler, DefaultRoute } = Router;
+    Router = require('react-router');
 
-var { App, Readme, Resources, Feed } = require('./App');
-
-var routes = (
-  <Route path='/' handler={ App }>
-    <Route name='readme' handler={ Readme }/>
-    <Route name='resources' handler={ Resources }/>
-    <Route name='feed' handler={ Feed }/>
-  </Route>
-);
+var routes = require('./Router');
 
 document.addEventListener('DOMContentLoaded', () => {
   Router.run(routes, Handler => {

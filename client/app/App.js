@@ -13,7 +13,7 @@
 
 var React  = require('react'),
     Router = require('react-router'),
-    { Link, Route, RouteHandler, DefaultRoute } = Router;
+    { Link, RouteHandler } = Router;
 
 // Global stylesheet
 require('./App.styl');
@@ -66,7 +66,7 @@ var Resources = React.createClass({
       <div className='resources markdown' dangerouslySetInnerHTML={ resources }/>
     );
   }
-})
+});
 
 /**
  * A feed of tweets relating to react.
@@ -84,7 +84,7 @@ var Feed = React.createClass({
           <i className='fa fa-twitter'/>
           {tweet.text}
         </div>
-      )
+      );
     });
 
     return (

@@ -37,6 +37,7 @@ This of course goes for CSS or any of it's preprocessors. You can even apply thi
 
 ## Yet to come
 
+* Git hooks to enforce ESlint before commit
 * Production tooling
 * Testing boilerplate
 
