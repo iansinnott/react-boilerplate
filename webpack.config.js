@@ -1,3 +1,12 @@
+/**
+ * Webpack configuration.
+ *
+ * For more info check out the [docs][1] as well as [this article][2].
+ *
+ * [1]: http://webpack.github.io/docs/
+ * [2]: http://thetrendythings.com/read/20178
+ */
+
 var webpack = require('webpack'),
 
     // Stylus
@@ -18,14 +27,15 @@ module.exports = {
   output: {
     path: __dirname + '/public/',
     filename: 'bundle.js',
-    publicPath: '/'
+    publicPath: '/' // The path from /public. A bit confusing
   },
 
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.HotModuleReplacementPlugin(), // Enable HMR
+    new webpack.NoErrorsPlugin() // Don't reload on errors
   ],
 
+  // If you want to use files with the actual JSX extension add it to the list
   resolve: {
     extensions: ['', '.js']
   },
@@ -33,7 +43,8 @@ module.exports = {
   module: {
     loaders: [
       { test: /\.js?$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/ },
-      { test: /\.styl$/, loaders: ['style', 'css', 'stylus'] }
+      { test: /\.styl$/, loaders: ['style', 'css', 'stylus'] },
+      { test: /\.(png|jpg|gif|svg)$/, loaders: ['file?name=[name].[ext]'] }
     ]
   },
 

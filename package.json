@@ -23,6 +23,7 @@
     "babel-core": "^4.7.16",
     "babel-loader": "^4.2.0",
     "css-loader": "^0.9.1",
+    "file-loader": "^0.8.1",
     "gulp": "^3.8.11",
     "gulp-jade": "^1.0.0",
     "gulp-util": "^3.0.4",
@@ -32,6 +33,7 @@
     "style-loader": "^0.8.3",
     "stylus-loader": "^1.0.0",
     "typographic": "^1.1.0",
+    "url-loader": "^0.5.5",
     "webpack": "^1.7.3",
     "webpack-dev-server": "^1.7.0"
   },

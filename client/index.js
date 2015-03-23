@@ -1,8 +1,15 @@
+'use strict';
+
+/**
+ * Entry point for the entire app. Currently this is also where we keep the
+ * Router.
+ */
+
 var React  = require('react'),
     Router = require('react-router'),
     { Link, Route, RouteHandler, DefaultRoute } = Router;
 
-var { App, Inbox, Account } = require('./app');
+var { App, Inbox, Account } = require('./App');
 
 var routes = (
   <Route path='/' handler={ App }>
