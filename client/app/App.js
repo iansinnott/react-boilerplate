@@ -1,8 +1,24 @@
+'use strict';
+
+/**
+ * The App. This is the global component within which all other components are
+ * nested. As such global requirements are addedd here, such as font-awesome.
+ * Also note that the App.styl file is the global stylus file as it applies to
+ * the root component.
+ *
+ * Note: Since this is a simple example app all components are defined within
+ * this file, however in a real project we would likely separate these into
+ * separate components.
+ */
+
 var React  = require('react'),
     Router = require('react-router'),
     { Link, Route, RouteHandler, DefaultRoute } = Router;
 
+// Global stylesheet
 require('./App.styl');
+
+require('font-awesome-webpack');
 
 require('./react-logo.png'); // Used as a bg image in stylus
 
@@ -29,18 +45,32 @@ var App = React.createClass({
   }
 });
 
+/**
+ * Loads the README.md file as html within the component.
+ */
 var Readme = React.createClass({
   render() {
-    return <div className='readme' dangerouslySetInnerHTML={ readme }/>;
+    return (
+      <div className='readme markdown' dangerouslySetInnerHTML={ readme }/>
+    );
   }
 });
 
+/**
+ * Like Readme this component also simply loads a markdown file into the react
+ * component.
+ */
 var Resources = React.createClass({
   render() {
-    return <div className='resources' dangerouslySetInnerHTML={ resources }/>;
+    return (
+      <div className='resources markdown' dangerouslySetInnerHTML={ resources }/>
+    );
   }
 })
 
+/**
+ * A feed of tweets relating to react.
+ */
 var Feed = React.createClass({
   render() {
     var tweets = [

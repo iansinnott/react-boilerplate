@@ -44,8 +44,10 @@ module.exports = {
     loaders: [
       { test: /\.js?$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/ },
       { test: /\.styl$/, loaders: ['style', 'css', 'stylus'] },
-      { test: /\.(png|jpg|gif|svg)$/, loaders: ['file?name=[name].[ext]'] },
-      { test: /\.md$/, loaders: ['html', 'markdown'] }
+      { test: /\.(png|jpg|gif)$/, loaders: ['file?name=[name].[ext]'] },
+      { test: /\.md$/, loaders: ['html', 'markdown'] },
+      { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&minetype=application/font-woff" },
+      { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" }
     ]
   },
 
