@@ -15,7 +15,7 @@ var React = require('react'),
     { Link, Route, RouteHandler, DefaultRoute } = Router;
 /* eslint-enable */
 
-var { App, Readme, Resources, Feed } = require('./App');
+var { Layout, Readme, Resources, Feed } = require('./Layout');
 
 var Home = React.createClass({
   render() {
@@ -31,7 +31,7 @@ var Home = React.createClass({
 });
 
 var routes = (
-  <Route path='/' handler={ App }>
+  <Route path='/' handler={ Layout }>
     <DefaultRoute handler={ Home } />
     <Route name='readme' handler={ Readme }/>
     <Route name='resources' handler={ Resources }/>

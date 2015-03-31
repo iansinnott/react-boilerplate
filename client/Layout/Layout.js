@@ -16,16 +16,14 @@ var React  = require('react'),
     { Link, RouteHandler } = Router;
 
 // Global stylesheet
-require('./App.styl');
+require('./Layout.styl');
 
 require('font-awesome-webpack');
-
-require('./react-logo.png'); // Used as a bg image in stylus
 
 var readme = { __html: require('../../README.md') };
 var resources = { __html: require('./resources.md') };
 
-var App = React.createClass({
+var Layout = React.createClass({
   render() {
     return (
       <div className="app">
@@ -99,5 +97,5 @@ var Feed = React.createClass({
   }
 });
 
-module.exports = { App, Readme, Resources, Feed };
+module.exports = { Layout, Readme, Resources, Feed };
 
