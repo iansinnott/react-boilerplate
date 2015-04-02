@@ -4,11 +4,12 @@ var express    = require('express'),
     morgan     = require('morgan'),
     bodyParser = require('body-parser');
 
-var app = express();
-var api = require('./api');
+var app    = express();
+var api    = require('./api');
+var config = require('../webpack.config');
 
 // Configure the server
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public', { index: false }));
 app.set('view engine', 'jade');
 app.set('views', 'server');
 app.set('port', process.env.PORT || 3000);
@@ -22,7 +23,9 @@ app.use('/api', api);
 // Send the boilerplate HTML file down for all get requests that aren't to the
 // API.
 app.get('*', function(req, res) {
-  res.render('index.jade');
+  res.render('index.jade', {
+    publicPath: config.output.publicPath
+  });
 });
 
 // 404

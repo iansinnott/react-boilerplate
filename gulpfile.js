@@ -23,19 +23,26 @@ gulp.task('nodemon', function() {
 });
 
 gulp.task('webpack', function() {
+  var DEV_PORT = process.env.DEV_PORT || 8080;
+
   var server = new WebpackDevServer(webpack(config), {
     contentBase: './public/',
     publicPath: config.output.publicPath,
     hot: true,
+    inline: true,
     stats: {
       colors: true,
       chunks: false
     }
   });
 
-  server.listen(3000, 'localhost', function(err, result) {
+  server.listen(DEV_PORT, function(err, result) {
     if (err) console.error(err);
-    console.log('Listening on port 3000');
+    console.log(
+      gutil.colors.green('Webpack server'),
+      'listening on port',
+      gutil.colors.magenta(DEV_PORT)
+    );
   });
 });
 

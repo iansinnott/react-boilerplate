@@ -7,7 +7,7 @@ var app = require('../server');
 
 var server = app.listen(app.get('port'), function() {
   console.log(
-    colors.cyan('App Server'),
+    colors.green('App Server'),
     'listening on port',
     colors.magenta(server.address().port)
   );

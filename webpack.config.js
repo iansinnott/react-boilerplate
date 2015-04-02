@@ -14,12 +14,14 @@ var webpack = require('webpack'),
     rupture     = require('rupture'),
     typographic = require('typographic');
 
+var WEBPACK_URL = 'http://localhost:8080/'; // Trailing slash is important
+
 module.exports = {
 
   devtool: 'eval',
 
   entry: [
-    'webpack-dev-server/client?http://localhost:3000',
+    'webpack-dev-server/client?' + WEBPACK_URL,
     'webpack/hot/only-dev-server',
     './client/index'
   ],
@@ -27,7 +29,11 @@ module.exports = {
   output: {
     path: __dirname + '/public/',
     filename: 'bundle.js',
-    publicPath: '/' // The path from /public. A bit confusing
+
+    // I'm not sure if this will cause problems when building for productiong.
+    // We don't want our build to be tied to any specific domain or URL. Not
+    // sure if this will affect that.
+    publicPath: WEBPACK_URL
   },
 
   plugins: [
