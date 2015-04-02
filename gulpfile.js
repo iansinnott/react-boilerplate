@@ -3,21 +3,11 @@
 var gulp = require('gulp'),
     gutil = require('gulp-util'),
 
-    // Jade
-    jade = require('gulp-jade'),
-
     // Webpack
     webpack = require('webpack'),
     WebpackDevServer = require('webpack-dev-server');
 
 var config = require('./webpack.config');
-
-// Build the initial HTML to be served
-gulp.task('jade', function() {
-  gulp.src('client/index.jade')
-    .pipe(jade())
-    .pipe(gulp.dest('public/'));
-});
 
 gulp.task('webpack', function() {
   var server = new WebpackDevServer(webpack(config), {
