@@ -3,11 +3,24 @@
 var gulp = require('gulp'),
     gutil = require('gulp-util'),
 
+    // Nodemon
+    nodemon = require('nodemon'),
+
     // Webpack
     webpack = require('webpack'),
     WebpackDevServer = require('webpack-dev-server');
 
 var config = require('./webpack.config');
+
+gulp.task('nodemon', function() {
+  nodemon({
+    script: 'bin/www',
+    watch: 'server/',
+    ext: 'js',
+    env: { NODE_ENV: process.env.NODE_ENV },
+    ignore: [ 'node_modules/', '.git/' ]
+  });
+});
 
 gulp.task('webpack', function() {
   var server = new WebpackDevServer(webpack(config), {
@@ -26,4 +39,4 @@ gulp.task('webpack', function() {
   });
 });
 
-gulp.task('default', ['jade', 'webpack']);
+gulp.task('default', ['nodemon', 'webpack']);
