@@ -2,21 +2,28 @@
 
 var express    = require('express'),
     morgan     = require('morgan'),
-    bodyParser = require('bodyParser');
+    bodyParser = require('body-parser');
 
 var app = express();
 var api = require('./api');
 
 // Configure the server
-app.set('view engine', 'jade');
-app.set('port', process.env.PORT || 8000);
 app.use(express.static(__dirname + '/public'));
+app.set('view engine', 'jade');
+app.set('views', 'server');
+app.set('port', process.env.PORT || 3000);
 app.use(morgan(process.env.NODE_ENV === 'development' ? 'dev' : 'combined'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Mount the API
 app.use('/api', api);
+
+// Send the boilerplate HTML file down for all get requests that aren't to the
+// API.
+app.get('*', function(req, res) {
+  res.render('index.jade');
+});
 
 // 404
 app.use(function(req, res, next) {
@@ -28,7 +35,7 @@ app.use(function(req, res, next) {
 // General error handling
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
-  res.json(err);
+  res.json({ message: err.message });
 });
 
 module.exports = app;
