@@ -17,7 +17,7 @@ A boilerplate for building new apps using [React][react] and [React Router][rr].
 ## Usage
 
 ```bash
-$ git clone https://github.com/iansinnott/react-boilerplate.git new-project-name
+$ git clone -o upstream https://github.com/iansinnott/react-boilerplate.git new-project-name
 $ cd new-project-name
 $ npm install
 $ gulp
