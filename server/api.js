@@ -1,6 +1,6 @@
 'use strict';
 
-var router = require('express').Router();
+let router = require('express').Router();
 
 router.get('/', (req, res) => {
   res.json({ success: true, message: 'You made it!' });

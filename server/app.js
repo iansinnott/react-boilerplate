@@ -1,17 +1,17 @@
 'use strict';
 
-var express    = require('express');
-var morgan     = require('morgan');
-var bodyParser = require('body-parser');
-var compression = require('compression');
+const express     = require('express');
+const morgan      = require('morgan');
+const bodyParser  = require('body-parser');
+const compression = require('compression');
 
-var config = require('../webpack.config');
-var devConfig = require('../webpack.dev.config');
+let config = require('../webpack.config');
+let devConfig = require('../webpack.dev.config');
 
-var app = express();
-var api = require('./api');
+let app = express();
+let api = require('./api');
 
-var publicPath;
+let publicPath;
 
 if (process.env.NODE_ENV === 'development')
   publicPath = devConfig.output.publicPath;
@@ -39,7 +39,7 @@ app.get('*', (req, res) => {
 
 // 404
 app.use((req, res, next) => {
-  var err = new Error('Not Found');
+  let err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
