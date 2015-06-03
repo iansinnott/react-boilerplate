@@ -1,9 +1,4 @@
-//- A minimal HTML file to pull in the bundle, which will
-//- actually set up the app.
+//- A minimal HTML file to pull in the app
 doctype html
-html
-  head
-    title Some App
-  body
-    #root
-    script(src='#{publicPath}/bundle.js')
+#root
+script(src='#{scriptPath}')
