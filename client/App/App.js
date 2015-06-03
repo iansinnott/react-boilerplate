@@ -1,6 +1,6 @@
 var React  = require('react');
 
-require('./Layout.styl');
+require('./App.styl');
 
 require('font-awesome-webpack');
 
