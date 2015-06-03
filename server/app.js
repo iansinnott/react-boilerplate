@@ -1,12 +1,20 @@
 'use strict';
 
-var express    = require('express'),
-    morgan     = require('morgan'),
-    bodyParser = require('body-parser');
+var express    = require('express');
+var morgan     = require('morgan');
+var bodyParser = require('body-parser');
 
-var app    = express();
-var api    = require('./api');
+var app = express();
+var api = require('./api');
+
 var config = require('../webpack.config');
+var devConfig = require('../webpack.dev.config');
+var publicPath;
+
+if (process.env.NODE_ENV === 'development')
+  publicPath = devConfig.output.publicPath;
+else
+  publicPath = config.output.publicPath;
 
 // Configure the server
 app.use(express.static(__dirname + '/public', { index: false }));
@@ -23,9 +31,7 @@ app.use('/api', api);
 // Send the boilerplate HTML file down for all get requests that aren't to the
 // API.
 app.get('*', function(req, res) {
-  res.render('index.jade', {
-    publicPath: config.output.publicPath
-  });
+  res.render('index.jade', { publicPath: publicPath });
 });
 
 // 404
