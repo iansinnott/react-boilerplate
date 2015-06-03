@@ -1,10 +1,10 @@
-var React  = require('react');
+const React  = require('react');
 
 require('./App.styl');
 
 require('font-awesome-webpack');
 
-var App = React.createClass({
+let App = React.createClass({
   render() {
     return (
       <div className="app container">
