@@ -3,6 +3,7 @@
 var express    = require('express');
 var morgan     = require('morgan');
 var bodyParser = require('body-parser');
+var compression = require('compression');
 
 var app = express();
 var api = require('./api');
@@ -17,7 +18,8 @@ else
   publicPath = config.output.publicPath;
 
 // Configure the server
-app.use(express.static(__dirname + '/public', { index: false }));
+app.use(compression());
+app.use(express.static('public', { index: false })); // Not using a full path is important
 app.set('view engine', 'jade');
 app.set('views', 'server');
 app.set('port', process.env.PORT || 3000);
@@ -31,7 +33,7 @@ app.use('/api', api);
 // Send the boilerplate HTML file down for all get requests that aren't to the
 // API.
 app.get('*', function(req, res) {
-  res.render('index.jade', { publicPath: publicPath });
+  res.render('index.jade', { scriptPath: publicPath + 'app.js' });
 });
 
 // 404
@@ -48,3 +50,10 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+if (require.main === module) {
+  app.listen(app.get('port'), function() {
+    console.log('App listening');
+  });
+}
+
