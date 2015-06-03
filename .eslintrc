@@ -1,20 +1,37 @@
 {
 
+  "rules": {
+    "quotes": 0,
+    "no-multi-spaces": 0,
+    "no-underscore-dangle": 0,
+    "new-cap": 0,
+    "no-path-concat": 0,
+    "curly": 0,
+    "no-unused-vars": [1, {"vars": "all", "args": "none"}],
+
+    // Note: Strict mode is very good, but since we're using Babel we get it
+    // automatically by default. We don't have to explicitly say it.
+    "strict": 0,
+
+    // Nothing inherently wrong with shadowing, just be aware of it
+    "no-shadow": 1,
+
+    // Using return for short circuiting is great
+    "consistent-return": 0
+  },
+
   "ecmaFeatures": {
-    "arrowFunctions": true,
-    "objectLiteralComputedProperties": true,
-    "objectLiteralShorthandMethods": true,
-    "objectLiteralShorthandProperties": true,
-    "destructuring": true,
-    "defaultParams": true,
-    "spread": true,
-    "templateStrings": true,
     "jsx": true
   },
 
-  "globals": {
-    "$": true,
-    "_": true
-  }
+  "env": {
+    "node": true,
+    "browser": true,
+    "es6": true
+  },
+
+  "plugins": [
+    "react"
+  ]
 
 }
