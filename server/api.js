@@ -2,7 +2,7 @@
 
 var router = require('express').Router();
 
-router.get('/', function(req, res) {
+router.get('/', (req, res) => {
   res.json({ success: true, message: 'You made it!' });
 });
 

@@ -5,11 +5,12 @@ var morgan     = require('morgan');
 var bodyParser = require('body-parser');
 var compression = require('compression');
 
+var config = require('../webpack.config');
+var devConfig = require('../webpack.dev.config');
+
 var app = express();
 var api = require('./api');
 
-var config = require('../webpack.config');
-var devConfig = require('../webpack.dev.config');
 var publicPath;
 
 if (process.env.NODE_ENV === 'development')
@@ -32,19 +33,19 @@ app.use('/api', api);
 
 // Send the boilerplate HTML file down for all get requests that aren't to the
 // API.
-app.get('*', function(req, res) {
+app.get('*', (req, res) => {
   res.render('index.jade', { scriptPath: publicPath + 'app.js' });
 });
 
 // 404
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
 // General error handling
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.json({ message: err.message });
 });
@@ -52,7 +53,7 @@ app.use(function(err, req, res, next) {
 module.exports = app;
 
 if (require.main === module) {
-  app.listen(app.get('port'), function() {
+  app.listen(app.get('port'), () => {
     console.log('App listening');
   });
 }
