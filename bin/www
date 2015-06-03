@@ -1,14 +1,12 @@
-#!/usr/bin/env node
+#!/usr/bin/env node --harmony
 'use strict';
-
-var colors = require('gulp-util').colors;
 
 var app = require('../server');
 
 var server = app.listen(app.get('port'), function() {
   console.log(
-    colors.green('App Server'),
+    'App Server'.green,
     'listening on port',
-    colors.magenta(server.address().port)
+    server.address().port.toString().magenta
   );
 });
