@@ -53,6 +53,17 @@ gulp.task('clean', function() {
 });
 
 /**
+ * Run the app with mostly production settings. Minifies the app and runs the
+ * node server
+ */
+gulp.task('run', ['build'], function() {
+  nodemon({
+    script: 'bin/www',
+    env: { NODE_ENV: 'production' }
+  });
+});
+
+/**
  * Run the webpack dev server. This should always be run in tandem with the
  * nodemon dev server above.
  */
