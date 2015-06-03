@@ -1,17 +1,36 @@
+/* eslint-disable handle-callback-err */
 'use strict';
 
-var gulp = require('gulp'),
-    gutil = require('gulp-util'),
+// General
+var gulp = require('gulp');
+var fs = require('fs');
+var url = require('url');
 
-    // Nodemon
-    nodemon = require('nodemon'),
+// String coloring
+require('colors');
 
-    // Webpack
-    webpack = require('webpack'),
-    WebpackDevServer = require('webpack-dev-server');
+// Nodemon
+var nodemon = require('nodemon');
 
+// Webpack
+var webpack = require('webpack');
+var WebpackDevServer = require('webpack-dev-server');
+
+// Config
 var config = require('./webpack.config');
+var devConfig = require('./webpack.dev.config');
+var publicPath = devConfig.output.publicPath;
 
+/**
+ * Build app for production
+ */
+gulp.task('build', function() {
+  webpack(config, function(err, stats) {/* empty */});
+});
+
+/**
+ * Run the dev server
+ */
 gulp.task('nodemon', function() {
   nodemon({
     script: 'bin/www',
@@ -22,12 +41,27 @@ gulp.task('nodemon', function() {
   });
 });
 
-gulp.task('webpack', function() {
-  var DEV_PORT = process.env.DEV_PORT || 8080;
+/**
+ * Remove bundled files from public/
+ * Note: This does not remove the public directory itself
+ */
+gulp.task('clean', function() {
+  fs.readdirSync('public').forEach(function(filename) {
+    fs.unlinkSync('public/' + filename);
+  });
+  console.log('public/'.green, 'directory cleaned.');
+});
 
-  var server = new WebpackDevServer(webpack(config), {
+/**
+ * Run the webpack dev server. This should always be run in tandem with the
+ * nodemon dev server above.
+ */
+gulp.task('webpack', function() {
+  var DEV_PORT = url.parse(publicPath).port;
+
+  var server = new WebpackDevServer(webpack(devConfig), {
     contentBase: './public/',
-    publicPath: config.output.publicPath,
+    publicPath: publicPath,
     hot: true,
     inline: true,
     stats: {
@@ -39,9 +73,9 @@ gulp.task('webpack', function() {
   server.listen(DEV_PORT, function(err, result) {
     if (err) console.error(err);
     console.log(
-      gutil.colors.green('Webpack server'),
+      'Webpack server'.green,
       'listening on port',
-      gutil.colors.magenta(DEV_PORT)
+      DEV_PORT.toString().magenta
     );
   });
 });
