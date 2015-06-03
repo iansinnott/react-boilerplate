@@ -24,7 +24,7 @@ var publicPath = devConfig.output.publicPath;
 /**
  * Build app for production
  */
-gulp.task('build', function() {
+gulp.task('build', ['clean'], function() {
   webpack(config, function(err, stats) {/* empty */});
 });
 
