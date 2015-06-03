@@ -3,6 +3,8 @@
 
 var app = require('../server');
 
+require('colors');
+
 var server = app.listen(app.get('port'), function() {
   console.log(
     'App Server'.green,
