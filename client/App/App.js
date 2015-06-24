@@ -1,10 +1,10 @@
-const React  = require('react');
+import React from 'react';
 
-require('./App.styl');
+import './App.styl';
 
-require('font-awesome-webpack');
+import 'font-awesome-webpack';
 
-let App = React.createClass({
+export default React.createClass({
   render() {
     return (
       <div className="App container">
@@ -14,6 +14,4 @@ let App = React.createClass({
     );
   }
 });
-
-module.exports = App;
 

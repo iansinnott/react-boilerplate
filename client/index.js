@@ -1,6 +1,6 @@
-const React  = require('react');
+import React from 'react';
 
-let App = require('./App/App.js');
+import App from './App/App.js';
 
 React.render(<App/>, document.getElementById('root'));
 

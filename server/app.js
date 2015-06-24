@@ -1,15 +1,13 @@
-'use strict';
+import express from 'express';
+import morgan from 'morgan';
+import bodyParser from 'body-parser';
+import compression from 'compression';
 
-const express     = require('express');
-const morgan      = require('morgan');
-const bodyParser  = require('body-parser');
-const compression = require('compression');
-
-let config = require('../webpack.config');
-let devConfig = require('../webpack.dev.config');
+import config from '../webpack.config';
+import devConfig from '../webpack.dev.config';
+import api from './api';
 
 let app = express();
-let api = require('./api');
 
 let publicPath;
 
@@ -50,7 +48,7 @@ app.use((err, req, res, next) => {
   res.json({ message: err.message });
 });
 
-module.exports = app;
+export default app;
 
 if (require.main === module) {
   app.listen(app.get('port'), () => {

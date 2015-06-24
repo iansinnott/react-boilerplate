@@ -1,6 +1,6 @@
 {
-  "name": "boosh-api-v3",
-  "version": "0.2.0",
+  "name": "react-boilerplate",
+  "version": "0.2.1",
   "description": "",
   "main": "app.js",
   "engines": {

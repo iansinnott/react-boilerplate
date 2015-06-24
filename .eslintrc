@@ -21,6 +21,7 @@
   },
 
   "ecmaFeatures": {
+    "modules": true,
     "jsx": true
   },
 
