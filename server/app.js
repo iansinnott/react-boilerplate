@@ -50,9 +50,8 @@ app.use((err, req, res, next) => {
 
 export default app;
 
+// If this file is called directly run the server.
 if (require.main === module) {
-  app.listen(app.get('port'), () => {
-    console.log('App listening');
-  });
+  app.listen(app.get('port'), () => console.log('App listening'));
 }
 
