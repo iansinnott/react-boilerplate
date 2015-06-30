@@ -8,21 +8,21 @@ A boilerplate for building new apps using [React][react]
 
 * React
 * Webpack
-* Stylus
-* Markdown
 * Babel
-* Hot reloads on JS / Stylus changes
+* Stylus
 
 This is meant to be a base level boilerplate. It does not include any libraries for persistence, routing, state management, etc. It's meant to make it very quick to start a project with any given technology. For example, adding react router to this project base would be very quick.
 
 ## Usage
 
 ```bash
-$ git clone -o upstream https://github.com/iansinnott/react-boilerplate.git new-project-name
-$ cd new-project-name
+$ git clone -o project-base --depth 1 https://github.com/iansinnott/react-boilerplate <new-project>
+$ cd <new-project>
 $ npm install
 $ gulp
 ```
+
+Be sure to replace `<new-project>` with the name of the project you want to create.
 
 That's it. Now you're ready to start building.
 
@@ -38,9 +38,9 @@ This of course goes for CSS or any of it's preprocessors. You can even apply thi
 
 ## Yet to come
 
-* Git hooks to enforce ESlint before commit
-* Production tooling
-* Testing boilerplate
+- [x] Production tooling
+- [ ] Testing boilerplate
+- [ ] Git hooks
 
 [react]: http://facebook.github.io/react/
 
