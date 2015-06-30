@@ -2,17 +2,18 @@
 
 ## What is this?
 
-A boilerplate for building new apps using [React][react] and [React Router][rr].
+A boilerplate for building new apps using [React][react]
 
 #### What's included
 
 * React
-* React Router
 * Webpack
 * Stylus
 * Markdown
 * Babel
 * Hot reloads on JS / Stylus changes
+
+This is meant to be a base level boilerplate. It does not include any libraries for persistence, routing, state management, etc. It's meant to make it very quick to start a project with any given technology. For example, adding react router to this project base would be very quick.
 
 ## Usage
 
@@ -42,7 +43,6 @@ This of course goes for CSS or any of it's preprocessors. You can even apply thi
 * Testing boilerplate
 
 [react]: http://facebook.github.io/react/
-[rr]: https://github.com/rackt/react-router
 
 ## Troubleshooting
 
