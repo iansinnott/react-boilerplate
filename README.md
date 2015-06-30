@@ -38,7 +38,7 @@ This of course goes for CSS or any of it's preprocessors. You can even apply thi
 
 ## Yet to come
 
-- [x] Production tooling
+- [x] ~~Production tooling~~
 - [ ] Testing boilerplate
 - [ ] Git hooks
 
