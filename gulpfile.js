@@ -46,11 +46,16 @@ gulp.task('nodemon', function() {
  * Note: This does not remove the public directory itself
  */
 gulp.task('clean', function() {
-  fs.readdirSync('public').forEach(function(filename) {
-    fs.unlinkSync('public/' + filename);
-  });
-  console.log('public/'.green, 'directory cleaned.');
+  try {
+    fs.readdirSync('public').forEach(function(filename) {
+      fs.unlinkSync('public/' + filename);
+    });
+    console.log('public/'.green, 'directory cleaned.');
+  } catch (e) {
+    console.log('Error:'.red, 'Could not clean public directory');
+  }
 });
+
 
 /**
  * Run the app with mostly production settings. Minifies the app and runs the
