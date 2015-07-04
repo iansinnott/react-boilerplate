@@ -9,6 +9,10 @@ var url = require('url');
 // String coloring
 require('colors');
 
+// Used with mongo
+var exec = require('child_process').exec;
+var rmdir = require('rimraf');
+
 // Nodemon
 var nodemon = require('nodemon');
 
@@ -20,6 +24,8 @@ var WebpackDevServer = require('webpack-dev-server');
 var config = require('./webpack.config');
 var devConfig = require('./webpack.dev.config');
 var publicPath = devConfig.output.publicPath;
+
+var DB_PATH = './.db';
 
 /**
  * Build app for production
@@ -68,6 +74,41 @@ gulp.task('run', ['build'], function() {
   });
 });
 
+gulp.task('mongod', function() {
+
+  // Make sure the db directory exists. If not then create it.
+  try {
+    fs.readdirSync(DB_PATH);
+  } catch (e) {
+    fs.mkdir(DB_PATH);
+  }
+
+  // Run mongod
+  exec('mongod --dbpath ./.db', function(err) {
+    if (err) throw err;
+    console.log('MongoDB started');
+  });
+
+  console.log(
+    'MongoDB server'.green,
+    'listening on port',
+    '27017'.magenta
+  );
+});
+
+gulp.task('reset', function() {
+  try {
+    rmdir.sync(DB_PATH);
+    console.log('Database reset'.green);
+  } catch (e) {
+    console.log(
+      'Error:'.red,
+      'Could not remove ' + DB_PATH + ' directory:',
+      e.message.yellow
+    );
+  }
+});
+
 /**
  * Run the webpack dev server. This should always be run in tandem with the
  * nodemon dev server above.
@@ -96,4 +137,4 @@ gulp.task('webpack', function() {
   });
 });
 
-gulp.task('default', ['nodemon', 'webpack']);
+gulp.task('default', ['mongod', 'nodemon', 'webpack']);
