@@ -1,5 +1,8 @@
 {
 
+  // Allow cool es7 stuff
+  "parser": "babel-eslint",
+
   "rules": {
     "quotes": 0,
     "no-multi-spaces": 0,
@@ -8,6 +11,9 @@
     "no-path-concat": 0,
     "curly": 0,
     "no-unused-vars": [1, {"vars": "all", "args": "none"}],
+
+    // Sometimes I like to omit the space after a comma
+    "comma-spacing": 0,
 
     // Note: Strict mode is very good, but since we're using Babel we get it
     // automatically by default. We don't have to explicitly say it.
