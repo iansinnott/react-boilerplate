@@ -20,7 +20,7 @@ else
 app.use(compression());
 app.use(express.static('public', { index: false })); // Not using a full path is important
 app.set('view engine', 'jade');
-app.set('views', 'server');
+app.set('views', 'server/views');
 app.set('port', process.env.PORT || 3000);
 app.use(morgan(process.env.NODE_ENV === 'development' ? 'dev' : 'combined'));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -32,7 +32,7 @@ app.use('/api', api);
 // Send the boilerplate HTML file down for all get requests that aren't to the
 // API.
 app.get('*', (req, res) => {
-  res.render('index.jade', { scriptPath: publicPath + 'app.js' });
+  res.render('index', { scriptPath: publicPath + 'app.js' });
 });
 
 // 404
