@@ -34,7 +34,7 @@ api.get('/things/:id', (req, res, next) => {
 });
 
 api.post('/things', (req, res, next) => {
-  let thing = new Thing(req.body);
+  const thing = new Thing(req.body);
   thing.save()
     .then(::res.send)
     .catch(next);
