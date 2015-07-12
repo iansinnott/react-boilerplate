@@ -23,20 +23,32 @@ api.get('/', (req, res) => {
 
 api.get('/things', (req, res, next) => {
   Thing.find({})
-    .then(::res.send)
+    .then(data => res.send(data))
     .catch(next);
 });
 
 api.get('/things/:id', (req, res, next) => {
   Thing.findById(req.params.id)
-    .then(::res.send)
+    .then(data => res.send(data))
     .catch(next);
 });
 
 api.post('/things', (req, res, next) => {
   const thing = new Thing(req.body);
   thing.save()
-    .then(::res.send)
+    .then(data => res.send(data))
+    .catch(next);
+});
+
+api.put('/things/:id', (req, res, next) => {
+  Thing.findByIdAndUpdate(req.params.id, req.body)
+    .then(data => res.send(data))
+    .catch(next);
+});
+
+api.put('/things/:id', (req, res, next) => {
+  Thing.findByIdAndRemove(req.params.id)
+    .then(data => res.send(data))
     .catch(next);
 });
 
