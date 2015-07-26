@@ -68,7 +68,7 @@ module.exports = {
    */
   module: {
     loaders: [
-      { test: /\.js?$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/ },
+      { test: /\.js?$/, loaders: ['babel'], exclude: /node_modules/ },
       { test: /\.styl$/, loaders: ['style', 'css?-restructuring', 'autoprefixer', 'stylus'] },
       { test: /\.(png|jpg|gif)$/, loaders: ['file?name=[name].[ext]'] },
       { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&minetype=application/font-woff" },
