@@ -1,22 +1,24 @@
-import mongoose from 'mongoose';
-import mpromise from 'mongoose/node_modules/mpromise';
+import bookshelfFactory from 'bookshelf';
+import knexFactory from 'knex';
 
-// Promise hack to allow using .catch with mongoose promises. It's complete
-// insanity that mpromise still does not support catch and that Mongoose insists
-// on using this lame library. As such it is necessary to take matters into our
-// own hands.
-//
-// See: https://github.com/Automattic/mongoose/issues/2917
-mpromise.prototype.catch = function(onReject) {
-  return this.then(undefined, onReject);
-};
+import PACKAGE from '../../package.json';
 
-const DB_NAME = require('../../package.json').name + '-db';
+/**
+ * Create the database connection.
+ *
+ * NOTE: A db named PACKAGE.name + '-db' must already exist in the database. It
+ * does not appear that it can be created from knex.
+ */
+const knex = knexFactory({
+  client: 'pg',
+  debug: process.env.NODE_ENV === 'development',
+  connection: {
+    host: 'localhost',
+    port: 5432,
+    user: 'postgres',
+    password: '',
+    database: PACKAGE.name + '-db'
+  }
+});
 
-mongoose.connect('mongodb://localhost/' + DB_NAME);
-
-const db = mongoose.connection;
-
-db.on('error', ::console.error);
-
-export default db;
+export default bookshelfFactory(knex);
