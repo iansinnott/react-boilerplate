@@ -26,6 +26,14 @@ Be sure to replace `<new-project>` with the name of the project you want to crea
 
 That's it. Now you're ready to start building.
 
+## Postgres
+
+The default method of persistence is postgres. To get postgres up and running on a mac make sure you can run the following command:
+
+```
+postgres -D /usr/local/var/postgres
+```
+
 ## Reasons to use React + Webpack
 
 #### Rapid Development
