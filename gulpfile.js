@@ -25,7 +25,7 @@ var config = require('./webpack.config');
 var devConfig = require('./webpack.dev.config');
 var publicPath = devConfig.output.publicPath;
 
-var DB_PATH = './.db';
+var DB_PATH = '/usr/local/var/postgres';
 
 /**
  * Build app for production
@@ -74,7 +74,7 @@ gulp.task('run', ['build'], function() {
   });
 });
 
-gulp.task('mongod', function() {
+gulp.task('postgres', function() {
 
   // Make sure the db directory exists. If not then create it.
   try {
@@ -83,19 +83,24 @@ gulp.task('mongod', function() {
     fs.mkdir(DB_PATH);
   }
 
-  // Run mongod
-  exec('mongod --dbpath ./.db', function(err) {
+  // Run postgres
+  exec('postgres -D ' + DB_PATH, function(err) {
     if (err) throw err;
-    console.log('MongoDB started');
+    console.log('Postgres started');
   });
 
   console.log(
-    'MongoDB server'.green,
-    'listening on port',
-    '27017'.magenta
+    'Postgres server'.green,
+    'listening at',
+    'localhost:5432'.magenta
   );
 });
 
+/**
+ * TODO:
+ *
+ * This doesn't currently work
+ */
 gulp.task('reset', function() {
   try {
     rmdir.sync(DB_PATH);
@@ -137,4 +142,4 @@ gulp.task('webpack', function() {
   });
 });
 
-gulp.task('default', ['mongod', 'nodemon', 'webpack']);
+gulp.task('default', ['postgres', 'nodemon', 'webpack']);
