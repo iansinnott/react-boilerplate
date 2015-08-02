@@ -1,5 +1,9 @@
 {
 
+  // Post Eslint 1.0 everything is off by default. This re-enables recommended
+  // rules. Rules defined below will override the recommended defaults.
+  // "extends": "eslint:recommended",
+
   // Allow cool es7 stuff
   "parser": "babel-eslint",
 
