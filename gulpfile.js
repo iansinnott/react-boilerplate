@@ -25,7 +25,7 @@ var config = require('./webpack.config');
 var devConfig = require('./webpack.dev.config');
 var publicPath = devConfig.output.publicPath;
 
-var DB_PATH = '/usr/local/var/postgres';
+var DB_PATH = './.db';
 
 /**
  * Build app for production
@@ -74,7 +74,7 @@ gulp.task('run', ['build'], function() {
   });
 });
 
-gulp.task('postgres', function() {
+gulp.task('mongod', function() {
 
   // Make sure the db directory exists. If not then create it.
   try {
@@ -83,24 +83,19 @@ gulp.task('postgres', function() {
     fs.mkdir(DB_PATH);
   }
 
-  // Run postgres
-  exec('postgres -D ' + DB_PATH, function(err) {
+  // Run mongod
+  exec('mongod --dbpath ./.db', function(err) {
     if (err) throw err;
-    console.log('Postgres started');
+    console.log('MongoDB started');
   });
 
   console.log(
-    'Postgres server'.green,
-    'listening at',
-    'localhost:5432'.magenta
+    'MongoDB server'.green,
+    'listening on port',
+    '27017'.magenta
   );
 });
 
-/**
- * TODO:
- *
- * This doesn't currently work
- */
 gulp.task('reset', function() {
   try {
     rmdir.sync(DB_PATH);
@@ -112,6 +107,23 @@ gulp.task('reset', function() {
       e.message.yellow
     );
   }
+});
+
+gulp.task('postgres', function() {
+
+  console.log("WARNING:".yellow, "Not yet implemented. Postgres support is coming but not here yet.");
+
+  // Run postgres
+  // exec('postgres -D ' + DB_PATH, function(err) {
+  //   if (err) throw err;
+  //   console.log('Postgres started');
+  // });
+
+  // console.log(
+  //   'Postgres server'.green,
+  //   'listening at',
+  //   'localhost:5432'.magenta
+  // );
 });
 
 /**
@@ -142,4 +154,4 @@ gulp.task('webpack', function() {
   });
 });
 
-gulp.task('default', ['postgres', 'nodemon', 'webpack']);
+gulp.task('default', ['mongod', 'nodemon', 'webpack']);
