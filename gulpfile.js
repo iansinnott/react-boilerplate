@@ -154,4 +154,4 @@ gulp.task('webpack', function() {
   });
 });
 
-gulp.task('default', ['mongod', 'nodemon', 'webpack']);
+gulp.task('default', ['nodemon', 'webpack']);
