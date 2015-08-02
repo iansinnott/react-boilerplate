@@ -26,9 +26,15 @@ Be sure to replace `<new-project>` with the name of the project you want to crea
 
 That's it. Now you're ready to start building.
 
+## MongoDB
+
+The default method of persistence is MongoDB. By default app data will be stored locally in `./db`. By default running `gulp` will also run a `mongod` process in the background for your app to communicate with. If you would like to run your own `mongod` process, perhaps to configure it according to your needs then you can do so. Simply run your `mongod` process and call `gulp nodemon webpack` to bypass the Gulp-ified `mongod` process.
+
 ## Postgres
 
-The default method of persistence is postgres. To get postgres up and running on a mac make sure you can run the following command:
+**Update:** Postgres is not yet implemented. It is a work in progress pending migrating away from Mongoose and to Waterline as the ORM.
+
+To get postgres up and running on a mac make sure you can run the following command:
 
 ```
 postgres -D /usr/local/var/postgres
@@ -47,8 +53,19 @@ This of course goes for CSS or any of it's preprocessors. You can even apply thi
 ## Yet to come
 
 - [x] ~~Production tooling~~
+- [ ] Available as a module
 - [ ] Testing boilerplate
 - [ ] Git hooks
+- [ ] Multiple database support
+- [ ] General deployment improvements
+
+## TODO: Create NPM Module
+
+## TODO: Deployment Improvements
+
+This is fairly vague because there is not currently one surefire way to deploy every type of application you might want. Maybe you want to run on AWS. Maybe it's a static site and you're happy hosting on Surge.sh. The problem is there isn't just one way, so it's hard to define a `deploy` command that's both effective and flexible.
+
+The solution I propose is to create a Dockerfile that can be used to build an app that can run anywhere Docker is running.
 
 [react]: http://facebook.github.io/react/
 
