@@ -1,22 +1,51 @@
-import mongoose from 'mongoose';
-import mpromise from 'mongoose/node_modules/mpromise';
+import Waterline from 'waterline';
+import memory from 'sails-memory';
 
-// Promise hack to allow using .catch with mongoose promises. It's complete
-// insanity that mpromise still does not support catch and that Mongoose insists
-// on using this lame library. As such it is necessary to take matters into our
-// own hands.
-//
-// See: https://github.com/Automattic/mongoose/issues/2917
-mpromise.prototype.catch = function(onReject) {
-  return this.then(undefined, onReject);
+const waterline = new Waterline();
+
+const Users = Waterline.Collection.extend({
+  identity: 'user',
+  connection: 'default',
+  attributes: {
+    username: 'string',
+    email: 'string',
+    password: 'string'
+  }
+});
+
+const Things = Waterline.Collection.extend({
+  identity: 'things',
+  connection: 'default',
+  attributes: {
+    name: 'string',
+    owner: {
+      model: 'user'
+    }
+  }
+});
+
+export const config = {
+
+  adapters: { memory },
+
+  connections: {
+    default: {
+      adapter: 'memory'
+    }
+  },
+
+  // The same as calling waterline.loadCollection on each of these
+  collections: {
+    Users,
+    Things
+  }
+
 };
 
-const DB_NAME = require('../../package.json').name + '-db';
+// What would be the best way to do this? We obviously don't want any other
+// module to have to know about our waterline config. Just the waterline
+// instance. Decided against this for now since it would provide confusion for
+// anyone who saw the initialize method getting called with just one arg.
+// waterline.initialize = waterline.initialize.bind(waterline, config);
 
-mongoose.connect('mongodb://localhost/' + DB_NAME);
-
-const db = mongoose.connection;
-
-db.on('error', ::console.error);
-
-export default db;
+export default waterline;

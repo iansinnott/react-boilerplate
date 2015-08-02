@@ -7,14 +7,12 @@ import config from '../webpack.config';
 import devConfig from '../webpack.dev.config';
 import api from './api';
 
-let app = express();
-
-let publicPath;
+const app = express();
 
 if (process.env.NODE_ENV === 'development')
-  publicPath = devConfig.output.publicPath;
+  app.set('publicPath', devConfig.output.publicPath);
 else
-  publicPath = config.output.publicPath;
+  app.set('publicPath', config.output.publicPath);
 
 // Configure the server
 app.use(compression());
@@ -32,7 +30,7 @@ app.use('/api', api);
 // Send the boilerplate HTML file down for all get requests that aren't to the
 // API.
 app.get('*', (req, res) => {
-  res.render('index', { scriptPath: publicPath + 'app.js' });
+  res.render('index', { scriptPath: app.get('publicPath') + 'app.js' });
 });
 
 // 404
@@ -50,8 +48,6 @@ app.use((err, req, res, next) => {
 
 export default app;
 
-// If this file is called directly run the server.
 if (require.main === module) {
-  app.listen(app.get('port'), () => console.log('App listening'));
+  throw new Error("App should be started from bin/www not app.js");
 }
-

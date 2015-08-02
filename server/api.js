@@ -8,8 +8,8 @@
  */
 import { Router } from 'express';
 
-import db from './config/database.js';
-import Thing from './models/Thing.js';
+// import db from './config/database.js';
+// import Thing from './models/Thing.js';
 
 const api = Router();
 
