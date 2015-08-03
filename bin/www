@@ -2,13 +2,22 @@
 'use strict';
 
 var app = require('../server');
+var db = require('../server/config/database.js');
+var waterline = db.waterline;
+var config = db.config;
 
 require('colors');
 
-var server = app.listen(app.get('port'), function() {
-  console.log(
-    'App Server'.green,
-    'listening on port',
-    server.address().port.toString().magenta
-  );
+waterline.initialize(config, function(err, models) {
+  if (err) throw err;
+  app.models = models.collections;
+  app.connections = models.connections;
+  app.listen(app.get('port'), function() {
+    console.log(
+      'App Server'.green,
+      'listening on port',
+      app.get('port').toString().magenta
+    );
+  });
 });
+

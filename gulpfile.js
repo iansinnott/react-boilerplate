@@ -9,6 +9,10 @@ var url = require('url');
 // String coloring
 require('colors');
 
+// Used with mongo
+var exec = require('child_process').exec;
+var rmdir = require('rimraf');
+
 // Nodemon
 var nodemon = require('nodemon');
 
@@ -21,11 +25,26 @@ var config = require('./webpack.config');
 var devConfig = require('./webpack.dev.config');
 var publicPath = devConfig.output.publicPath;
 
+// TODO: This is just the waterline-disk default. Move this into config so that
+// it can be modified in one place.
+var DB_PATH = './tmp';
+
 /**
  * Build app for production
  */
 gulp.task('build', ['clean'], function() {
   webpack(config, function(err, stats) {/* empty */});
+});
+
+/**
+ * Run the app with mostly production settings. Minifies the app and runs the
+ * node server
+ */
+gulp.task('run', ['build'], function() {
+  nodemon({
+    script: 'bin/www',
+    env: { NODE_ENV: 'production' }
+  });
 });
 
 /**
@@ -56,16 +75,56 @@ gulp.task('clean', function() {
   }
 });
 
+gulp.task('mongod', function() {
 
-/**
- * Run the app with mostly production settings. Minifies the app and runs the
- * node server
- */
-gulp.task('run', ['build'], function() {
-  nodemon({
-    script: 'bin/www',
-    env: { NODE_ENV: 'production' }
+  // Make sure the db directory exists. If not then create it.
+  try {
+    fs.readdirSync(DB_PATH);
+  } catch (e) {
+    fs.mkdir(DB_PATH);
+  }
+
+  // Run mongod
+  exec('mongod --dbpath ./.db', function(err) {
+    if (err) throw err;
+    console.log('MongoDB started');
   });
+
+  console.log(
+    'MongoDB server'.green,
+    'listening on port',
+    '27017'.magenta
+  );
+});
+
+gulp.task('reset', function() {
+  try {
+    rmdir.sync(DB_PATH);
+    console.log('Database reset'.green);
+  } catch (e) {
+    console.log(
+      'Error:'.red,
+      'Could not remove ' + DB_PATH + ' directory:',
+      e.message.yellow
+    );
+  }
+});
+
+gulp.task('postgres', function() {
+
+  console.log("WARNING:".yellow, "Not yet implemented. Postgres support is coming but not here yet.");
+
+  // Run postgres
+  // exec('postgres -D ' + DB_PATH, function(err) {
+  //   if (err) throw err;
+  //   console.log('Postgres started');
+  // });
+
+  // console.log(
+  //   'Postgres server'.green,
+  //   'listening at',
+  //   'localhost:5432'.magenta
+  // );
 });
 
 /**
