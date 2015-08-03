@@ -1,5 +1,5 @@
 import Waterline from 'waterline';
-import memory from 'sails-memory';
+import disk from 'sails-disk';
 
 export const waterline = new Waterline();
 
@@ -28,10 +28,10 @@ const Things = Waterline.Collection.extend({
 });
 
 export const config = {
-  adapters: { memory },
+  adapters: { disk },
   connections: {
     default: {
-      adapter: 'memory'
+      adapter: 'disk'
     }
   }
 };
