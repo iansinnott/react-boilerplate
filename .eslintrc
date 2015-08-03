@@ -18,6 +18,15 @@
     "curly": [2, "multi"],
 
     // Using return for short circuiting is great
-    // "consistent-return": 0
+    // "consistent-return": 0,
+
+    // React specficic
+    // See: https://github.com/yannickcr/eslint-plugin-react
+
+    // Enforce single quotes unless we're avoiding have to escapae
+    "react/jsx-quotes": [2, "single", "avoid-escape"],
+
+    // Don't use spaces in JSX curl brackets
+    "react/jsx-curly-spacing": [2],
   }
 }
