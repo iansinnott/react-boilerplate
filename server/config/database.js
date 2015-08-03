@@ -3,6 +3,17 @@ import disk from 'sails-disk';
 
 export const waterline = new Waterline();
 
+const Users = Waterline.Collection.extend({
+  identity: 'user',
+  tableName: 'users',
+  connection: 'default',
+  attributes: {
+    username: 'string',
+    email: 'string',
+    password: 'string',
+  },
+});
+
 // Note: For some reason identities and table name must be lower case
 const Things = Waterline.Collection.extend({
   identity: 'thing',
@@ -25,6 +36,7 @@ export const config = {
   },
 };
 
+waterline.loadCollection(Users);
 waterline.loadCollection(Things);
 
 // What would be the best way to do this? We obviously don't want any other
