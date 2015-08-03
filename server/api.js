@@ -8,16 +8,26 @@
  */
 import { Router } from 'express';
 
+/**
+ * @exports apiWrapper
+ *
+ * Because of Waterline's (questionable) design, actual queryable models are not
+ * available until after app initialization, at which point they are manually
+ * stored on the app object. As such, we need access to the app object in order
+ * to do database operations, so we wrap our Router instance such that this
+ * middleware can be called as as function that takes app as an argument.
+ * @param {object} app Express instance
+ * @return {function}
+ */
 export default function apiWrapper(app) {
   const api = Router();
 
   api.get('/', (req, res) => {
-    console.log(app.models);
     res.send({ success: true, message: 'You made it!' });
   });
 
   /* ***************************************************************************
-   * RESTful route example
+   * RESTful routing example
    * **************************************************************************/
 
   api.get('/things', (req, res, next) => {
