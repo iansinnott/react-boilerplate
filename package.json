@@ -7,7 +7,6 @@
     "node": "^0.12"
   },
   "scripts": {
-    "test": "echo 'No tests yet...'",
     "lint": "./node_modules/.bin/eslint server client",
     "start": "./bin/www"
   },
