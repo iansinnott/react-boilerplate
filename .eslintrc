@@ -1,3 +1,23 @@
 {
-  "extends": "airbnb"
+  "extends": "airbnb",
+  "rules": {
+
+    // Allow using capitalized vars without the new keyword. (Ex: Map, List)
+    "new-cap": 0,
+
+    // May want to switch to an alternative logging method later, but for now
+    // console still goes
+    "no-console": 0,
+
+    // Having unsed args is allowed b/c its good for consistency and reminding
+    // what vars are available. Ex: (req, res, next) => { res.send(/* ... */) }
+    "no-unused-vars": [1, {"vars": "all", "args": "none"}],
+
+    // Omitting curly braces is fine as long as there is only one line under the
+    // statement
+    "curly": [2, "multi"],
+
+    // Using return for short circuiting is great
+    // "consistent-return": 0
+  }
 }
