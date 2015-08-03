@@ -3,3 +3,4 @@ node_modules/
 _assets/
 public/
 .db/
+.tmp
