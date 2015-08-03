@@ -6,18 +6,35 @@ A boilerplate for building new apps using [React][react]
 
 #### What's included
 
-* React
-* Webpack
-* Babel
-* Stylus
+**Client Side:**
 
-This is meant to be a base level boilerplate. It does not include any libraries for persistence, routing, state management, etc. It's meant to make it very quick to start a project with any given technology. For example, adding react router to this project base would be very quick.
+* [React][react]
+* [Webpack][webpack]
+* [Babel][babel]
+* [Stylus][stylus]
+
+**Server Side:**
+
+* [Babel][babel] (via [Babel require hook](https://babeljs.io/docs/usage/require/))
+* [Express][express]
+* [Waterline][waterline]
+
+#### Front-end use
+
+This is meant to be a base level boilerplate for front-end development. It does not include any libraries for routing or state management. It's meant to make it very quick to start a React project with any React-oriented technology. For example, adding [React Router][rr] and [Flux][flux] to this project would be as simple as `npm install --save react-router flux`.
+
+#### Back-end use
+
+This repo also comes with a fully-functional back-end implemented in Node with Express and Waterline. You're welcome to not use the server side at all as it may well be more than you need for a project, but it's there if you want it. To see how it's implemented have a look at [api.js][api] where you'll find a fully functional REST API for `Thing` models.
+
+[api]: https://github.com/iansinnott/react-boilerplate/blob/master/server/api.js
 
 ## Usage
 
 ```bash
-$ git clone -o project-base --depth 1 https://github.com/iansinnott/react-boilerplate <new-project>
+$ git cloneo --depth 1 https://github.com/iansinnott/react-boilerplate <new-project>
 $ cd <new-project>
+$ rm -rf .git
 $ npm install
 $ gulp
 ```
@@ -61,6 +78,12 @@ This of course goes for CSS or any of it's preprocessors. You can even apply thi
 
 ## TODO: Create NPM Module
 
+Although I created this project long before seeing a [similar project by Henrik Joreteg][hjs], I really like a lot of what he's doing over there. One of the main features that I'd like to incorporate is the use of a boilerplate as an installable Node module.
+
+Clone a git repo and completely removing the repo part once it's downloaded is simple but it's also not using git the way it was meant to be used. Furthermore it removes the possibility of updating the underlying project base in a way. Therefore I intend to borrow from [hjs-webpack][hjs] and implement this project as module. Those changes are coming.
+
+[hjs]: https://github.com/henrikjoreteg/hjs-webpack
+
 ## TODO: Deployment Improvements
 
 This is fairly vague because there is not currently one surefire way to deploy every type of application you might want. Maybe you want to run on AWS. Maybe it's a static site and you're happy hosting on Surge.sh. The problem is there isn't just one way, so it's hard to define a `deploy` command that's both effective and flexible.
@@ -74,3 +97,15 @@ The solution I propose is to create a Dockerfile that can be used to build an ap
 #### Live reload (aka Hot Module Replacement) doesn't work.
 
 One of the gotchas of the hot react loader seems to be that it will not hot work with files in the root of the client directory. If you edit `client/index.js` or `client/Router.js` it will not do a live reload, you will have to to it manually.
+
+
+
+[react]: http://facebook.github.io/react/
+[webpack]: http://webpack.github.io/
+[babel]: https://babeljs.io/
+[stylus]: https://learnboost.github.io/stylus/
+[express]: http://expressjs.com/
+[waterline]: https://github.com/balderdashy/waterline
+[flux]: https://facebook.github.io/flux/docs/overview.html
+[rr]: https://github.com/rackt/react-router
+
