@@ -1,6 +1,10 @@
 import Waterline from 'waterline';
 import disk from 'sails-disk';
 
+/**
+ * Waterline defines schemas as seen below. See the README for more info on
+ * defining schemas and validations.
+ */
 export const waterline = new Waterline();
 
 const Users = Waterline.Collection.extend({
@@ -8,9 +12,20 @@ const Users = Waterline.Collection.extend({
   tableName: 'users',
   connection: 'default',
   attributes: {
-    username: 'string',
-    email: 'string',
-    password: 'string',
+    username: {
+      type: 'string',
+      required: false,
+    },
+    email: {
+      type: 'string',
+      required: true,
+      minLength: 5,
+      // email: true, // Not yet sure if this would work
+    },
+    password: {
+      type: 'string',
+      required: true,
+    },
   },
 });
 

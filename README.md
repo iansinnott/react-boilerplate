@@ -43,6 +43,28 @@ Be sure to replace `<new-project>` with the name of the project you want to crea
 
 That's it. Now you're ready to start building.
 
+## Waterline Mini-docs
+
+To quickly and easily get up and running with Waterline here is some useful info:
+
+* Types
+  * string
+  * text
+  * integer
+  * float
+  * date
+  * time
+  * datetime
+  * boolean
+  * binary
+  * array
+  * json
+* [Validations][validations]
+* For quick docs see [the readme][readme]
+
+[validations]: https://github.com/balderdashy/anchor/blob/master/lib/match/rules.js
+[readme]: https://github.com/balderdashy/waterline
+
 ## MongoDB
 
 The default method of persistence is MongoDB. By default app data will be stored locally in `./db`. By default running `gulp` will also run a `mongod` process in the background for your app to communicate with. If you would like to run your own `mongod` process, perhaps to configure it according to your needs then you can do so. Simply run your `mongod` process and call `gulp nodemon webpack` to bypass the Gulp-ified `mongod` process.
