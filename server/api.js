@@ -8,49 +8,47 @@
  */
 import { Router } from 'express';
 
-// import db from './config/database.js';
-// import Thing from './models/Thing.js';
+export default function apiWrapper(app) {
+  const api = Router();
 
-const api = Router();
+  api.get('/', (req, res) => {
+    console.log(app.models);
+    res.send({ success: true, message: 'You made it!' });
+  });
 
-api.get('/', (req, res) => {
-  res.json({ success: true, message: 'You made it!' });
-});
+  /*****************************************************************************
+   * RESTful route example
+   ****************************************************************************/
 
-/*****************************************************************************
- * RESTful route example
- ****************************************************************************/
+  api.get('/things', (req, res, next) => {
+    app.models.thing.find()
+      .then(data => res.send(data))
+      .catch(next);
+  });
 
-api.get('/things', (req, res, next) => {
-  Thing.find({})
-    .then(data => res.send(data))
-    .catch(next);
-});
+  api.get('/things/:id', (req, res, next) => {
+    app.models.thing.findOne({ id: req.params.id })
+      .then(data => res.send(data))
+      .catch(next);
+  });
 
-api.get('/things/:id', (req, res, next) => {
-  Thing.findById(req.params.id)
-    .then(data => res.send(data))
-    .catch(next);
-});
+  api.post('/things', (req, res, next) => {
+    app.models.thing.create(req.body)
+      .then(data => res.send(data))
+      .catch(next);
+  });
 
-api.post('/things', (req, res, next) => {
-  const thing = new Thing(req.body);
-  thing.save()
-    .then(data => res.send(data))
-    .catch(next);
-});
+  api.put('/things/:id', (req, res, next) => {
+    app.models.thing.update({ id: req.params.id }, req.body)
+      .then(data => res.send(data))
+      .catch(next);
+  });
 
-api.put('/things/:id', (req, res, next) => {
-  Thing.findByIdAndUpdate(req.params.id, req.body)
-    .then(data => res.send(data))
-    .catch(next);
-});
+  api.delete('/things/:id', (req, res, next) => {
+    app.models.thing.destroy({ id: req.params.id })
+      .then(data => res.send(data))
+      .catch(next);
+  });
 
-api.put('/things/:id', (req, res, next) => {
-  Thing.findByIdAndRemove(req.params.id)
-    .then(data => res.send(data))
-    .catch(next);
-});
-
-export default api;
-
+  return api;
+}
