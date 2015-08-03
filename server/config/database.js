@@ -11,8 +11,8 @@ const Users = Waterline.Collection.extend({
   attributes: {
     username: 'string',
     email: 'string',
-    password: 'string'
-  }
+    password: 'string',
+  },
 });
 
 const Things = Waterline.Collection.extend({
@@ -22,18 +22,18 @@ const Things = Waterline.Collection.extend({
   attributes: {
     name: 'string',
     owner: {
-      model: 'user'
-    }
-  }
+      model: 'user',
+    },
+  },
 });
 
 export const config = {
   adapters: { disk },
   connections: {
     default: {
-      adapter: 'disk'
-    }
-  }
+      adapter: 'disk',
+    },
+  },
 };
 
 waterline.loadCollection(Users);

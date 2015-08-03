@@ -12,6 +12,6 @@ export default React.createClass({
         <p>What you know about React?</p>
       </div>
     );
-  }
+  },
 });
 

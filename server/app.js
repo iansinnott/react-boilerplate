@@ -52,6 +52,6 @@ app.use((err, req, res, next) => {
 
 export default app;
 
-if (require.main === module) {
-  throw new Error("App should be started from bin/www not app.js");
-}
+// Must run the app from bin/www
+if (require.main === module)
+  throw new Error('App should be started from bin/www not app.js');
