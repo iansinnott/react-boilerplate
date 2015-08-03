@@ -25,13 +25,26 @@ var config = require('./webpack.config');
 var devConfig = require('./webpack.dev.config');
 var publicPath = devConfig.output.publicPath;
 
-var DB_PATH = './.db';
+// TODO: This is just the waterline-disk default. Move this into config so that
+// it can be modified in one place.
+var DB_PATH = './tmp';
 
 /**
  * Build app for production
  */
 gulp.task('build', ['clean'], function() {
   webpack(config, function(err, stats) {/* empty */});
+});
+
+/**
+ * Run the app with mostly production settings. Minifies the app and runs the
+ * node server
+ */
+gulp.task('run', ['build'], function() {
+  nodemon({
+    script: 'bin/www',
+    env: { NODE_ENV: 'production' }
+  });
 });
 
 /**
@@ -60,18 +73,6 @@ gulp.task('clean', function() {
   } catch (e) {
     console.log('Error:'.red, 'Could not clean public directory');
   }
-});
-
-
-/**
- * Run the app with mostly production settings. Minifies the app and runs the
- * node server
- */
-gulp.task('run', ['build'], function() {
-  nodemon({
-    script: 'bin/www',
-    env: { NODE_ENV: 'production' }
-  });
 });
 
 gulp.task('mongod', function() {
