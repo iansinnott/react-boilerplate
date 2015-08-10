@@ -1,4 +1,3 @@
-//- A minimal HTML file to pull in the app
-doctype html
-#root
-script(src='#{scriptPath}app.js')
+extends ./layout.jade
+block content
+  script(src='#{scriptPath}app.js')

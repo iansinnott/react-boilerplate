@@ -32,7 +32,10 @@ app.use('/api', api(app));
 // Send the boilerplate HTML file down for all get requests that aren't to the
 // API.
 app.get('*', (req, res) => {
-  res.render('index', { scriptPath: app.get('publicPath') });
+  res.render('index', {
+    scriptPath: app.get('publicPath'),
+    isDev,
+  });
 });
 
 // 404
