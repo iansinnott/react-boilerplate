@@ -121,6 +121,7 @@ This of course goes for CSS or any of it's preprocessors. You can even apply thi
 - [ ] Type Safety
 - [ ] Git hooks for eslint + type safety
 - [ ] General deployment improvements
+- [ ] Use chunk hashes in filenames and add long-term caching headers
 
 ## TODO
 
