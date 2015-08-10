@@ -27,6 +27,42 @@
     "react/jsx-quotes": [2, "single", "avoid-escape"],
 
     // Don't use spaces in JSX curl brackets
-    "react/jsx-curly-spacing": [2],
+    "react/jsx-curly-spacing": 2,
+
+    // Allow more than one component per file
+    "react/no-multi-comp": 0,
+
+    // Completely disallow duplicate props. This is an erorr in strict mode and
+    // will throw
+    "react/jsx-no-duplicate-props": 2,
+
+    "react/sort-comp": [1, { order: [
+      'lifecycle',
+      'render',
+      'everything-else',
+    ], groups: {
+        lifecycle: [
+          'displayName',
+          'mixins',
+          'propTypes',
+          'contextTypes',
+          'childContextTypes',
+          'statics',
+          'defaultProps',
+          'constructor',
+          'getDefaultProps',
+          'getInitialState',
+          'getChildContext',
+          'componentWillMount',
+          'componentDidMount',
+          'componentWillReceiveProps',
+          'shouldComponentUpdate',
+          'componentWillUpdate',
+          'componentDidUpdate',
+          'componentWillUnmount'
+        ]
+      }}
+    ],
+
   }
 }
