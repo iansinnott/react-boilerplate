@@ -1,5 +1,4 @@
-/* eslint-disable handle-callback-err */
-'use strict';
+/* eslint-disable no-var, vars-on-top */
 
 // General
 var gulp = require('gulp');
@@ -32,8 +31,17 @@ var DB_PATH = './tmp';
 /**
  * Build app for production
  */
-gulp.task('build', ['clean'], function() {
-  webpack(config, function(err, stats) {/* empty */});
+gulp.task('build', ['clean'], function(done) {
+  console.log('Webpack bundle', 'compiling...');
+  webpack(config, function(err, stats) {
+    if (err)
+      console.error('Webpack bundle failed.', err);
+    else {
+      console.log('Webpack bundle complete.');
+      console.log(stats.toString({ chunks: false, version: true }));
+    }
+    done();
+  });
 });
 
 /**
@@ -43,7 +51,7 @@ gulp.task('build', ['clean'], function() {
 gulp.task('run', ['build'], function() {
   nodemon({
     script: 'bin/www',
-    env: { NODE_ENV: 'production' }
+    env: { NODE_ENV: 'production' },
   });
 });
 
@@ -56,7 +64,7 @@ gulp.task('nodemon', function() {
     watch: 'server/',
     ext: 'js',
     env: { NODE_ENV: process.env.NODE_ENV },
-    ignore: [ 'node_modules/', '.git/' ]
+    ignore: [ 'node_modules/', '.git/' ],
   });
 });
 
@@ -64,7 +72,7 @@ gulp.task('nodemon', function() {
  * Remove bundled files from public/
  * Note: This does not remove the public directory itself
  */
-gulp.task('clean', function() {
+gulp.task('clean', function(done) {
   try {
     fs.readdirSync('public').forEach(function(filename) {
       fs.unlinkSync('public/' + filename);
@@ -73,10 +81,10 @@ gulp.task('clean', function() {
   } catch (e) {
     console.log('Error:'.red, 'Could not clean public directory');
   }
+  done();
 });
 
 gulp.task('mongod', function() {
-
   // Make sure the db directory exists. If not then create it.
   try {
     fs.readdirSync(DB_PATH);
@@ -111,8 +119,7 @@ gulp.task('reset', function() {
 });
 
 gulp.task('postgres', function() {
-
-  console.log("WARNING:".yellow, "Not yet implemented. Postgres support is coming but not here yet.");
+  console.log('WARNING:'.yellow, 'Not yet implemented. Postgres support is coming but not here yet.');
 
   // Run postgres
   // exec('postgres -D ' + DB_PATH, function(err) {
@@ -141,8 +148,8 @@ gulp.task('webpack', function() {
     inline: true,
     stats: {
       colors: true,
-      chunks: false
-    }
+      chunks: false,
+    },
   });
 
   server.listen(DEV_PORT, function(err, result) {
