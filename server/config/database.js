@@ -7,6 +7,8 @@ import disk from 'sails-disk';
  */
 export const waterline = new Waterline();
 
+const isDev = process.env.NODE_ENV === 'development';
+
 const Users = Waterline.Collection.extend({
   identity: 'user',
   tableName: 'users',
@@ -27,6 +29,7 @@ const Users = Waterline.Collection.extend({
       required: true,
     },
   },
+  migrate: isDev ? 'alter' : 'safe',
 });
 
 // Note: For some reason identities and table name must be lower case
@@ -40,6 +43,7 @@ const Things = Waterline.Collection.extend({
       model: 'user',
     },
   },
+  migrate: isDev ? 'alter' : 'safe',
 });
 
 export const config = {
