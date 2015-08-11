@@ -15,7 +15,7 @@
 
     // Omitting curly braces is fine as long as there is only one line under the
     // statement
-    "curly": [2, "multi"],
+    "curly": [2, "multi-or-nest"],
 
     // Using return for short circuiting is great
     // "consistent-return": 0,
