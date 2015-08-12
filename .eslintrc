@@ -20,6 +20,12 @@
     // Using return for short circuiting is great
     // "consistent-return": 0,
 
+    // Catch undefined vars
+    "no-undef": 2,
+
+    // We don't need to use switch default case all the time
+    "default-case": 0,
+
     // React specficic
     // See: https://github.com/yannickcr/eslint-plugin-react
 
@@ -43,12 +49,12 @@
     ], groups: {
         lifecycle: [
           'displayName',
-          'mixins',
           'propTypes',
           'contextTypes',
           'childContextTypes',
           'statics',
           'defaultProps',
+          'mixins',
           'constructor',
           'getDefaultProps',
           'getInitialState',
