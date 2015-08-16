@@ -4,17 +4,11 @@ import bodyParser from 'body-parser';
 import compression from 'compression';
 
 import HttpError from './lib/HttpError.js';
-import prodConfig from '../webpack.config';
-import devConfig from '../webpack.dev.config';
+import config from '../webpack.config';
 import api from './api';
 
 const app = express();
 const isDev = process.env.NODE_ENV === 'development';
-
-if (isDev)
-  app.set('publicPath', devConfig.output.publicPath);
-else
-  app.set('publicPath', prodConfig.output.publicPath);
 
 // Configure the server
 app.use(compression());
@@ -25,6 +19,9 @@ app.set('port', process.env.PORT || 3000);
 app.use(morgan(isDev ? 'dev' : 'combined'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+// Set public path which will be exposed to jade views
+app.set('publicPath', config.output.publicPath);
 
 // Mount the API (note that we MUST pass app to all router middleware)
 app.use('/api', api(app));
