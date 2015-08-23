@@ -1,10 +1,8 @@
 import React from 'react';
-
+import 'font-awesome-webpack';
 import styles from './App.styl';
 
-import 'font-awesome-webpack';
-
-export default React.createClass({
+export const App = React.createClass({
   render() {
     return (
       <div className={styles.App}>
