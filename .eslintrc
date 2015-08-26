@@ -1,5 +1,8 @@
 {
   "extends": "airbnb",
+  "globals": {
+    "__DEV__": true,
+  },
   "rules": {
 
     // Allow using capitalized vars without the new keyword. (Ex: Map, List)
