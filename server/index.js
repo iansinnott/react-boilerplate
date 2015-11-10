@@ -1,7 +1,6 @@
 /**
- * Even if using io.js it's still a good idea to use babel server side at least
- * at the time of writing this (2015-06-24). Once io.js supports things like
- * async and arrow functions at a stable level then this could be remoed.
+ * Even if using 4.x there are still ES6 features missing from node so we use
+ * babel server side.
  */
-require('babel/register');
+require('babel-core/register');
 module.exports = require('./app');
