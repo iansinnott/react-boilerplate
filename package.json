@@ -7,8 +7,11 @@
     "node": "^4.2"
   },
   "scripts": {
+    "clean": "rimraf dist",
     "lint": "eslint server client",
-    "start": "./bin/www"
+    "start": "./bin/www",
+    "build:webpack": "NODE_ENV=production webpack --config webpack.config.prod.js",
+    "build": "npm run clean && npm run build:webpack"
   },
   "repository": {
     "type": "git",
@@ -28,6 +31,7 @@
     "css-loader": "^0.22.0",
     "eslint": "^1.3.1",
     "eslint-plugin-react": "^2.3.0",
+    "eslint-config-airbnb": "^1.0.0",
     "express": "^4.13.3",
     "extract-text-webpack-plugin": "^0.9.1",
     "file-loader": "^0.8.4",
@@ -48,7 +52,6 @@
     "webpack-hot-middleware": "^2.0.0"
   },
   "dependencies": {
-    "eslint-config-airbnb": "^1.0.0",
     "react": "^0.14.0",
     "react-dom": "^0.14.0"
   }
