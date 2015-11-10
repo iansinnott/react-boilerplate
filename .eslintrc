@@ -1,77 +1,19 @@
 {
   "extends": "airbnb",
-  "globals": {
-    "__DEV__": true,
-  },
   "rules": {
 
-    // Allow using capitalized vars without the new keyword. (Ex: Map, List)
-    "new-cap": 0,
+    // Babel handles strict for us so it should never be manually added
+    "strict": [2, "never"],
 
-    // May want to switch to an alternative logging method later, but for now
-    // console still goes
-    "no-console": 0,
+    // Single quotes on JSX components
+    "jsx-quotes": [2, "prefer-single"],
 
     // Having unsed args is allowed b/c its good for consistency and reminding
     // what vars are available. Ex: (req, res, next) => { res.send(/* ... */) }
     "no-unused-vars": [1, {"vars": "all", "args": "none"}],
 
-    // Omitting curly braces is fine as long as there is only one line under the
-    // statement
-    "curly": [2, "multi-or-nest"],
+    // Allow multiple components in a single file
+    "react/no-multi-comp": [0],
 
-    // Using return for short circuiting is great
-    // "consistent-return": 0,
-
-    // Catch undefined vars
-    "no-undef": 2,
-
-    // We don't need to use switch default case all the time
-    "default-case": 0,
-
-    // React specficic
-    // See: https://github.com/yannickcr/eslint-plugin-react
-
-    // Enforce single quotes unless we're avoiding have to escapae
-    "react/jsx-quotes": [2, "single", "avoid-escape"],
-
-    // Don't use spaces in JSX curl brackets
-    "react/jsx-curly-spacing": 2,
-
-    // Allow more than one component per file
-    "react/no-multi-comp": 0,
-
-    // Completely disallow duplicate props. This is an erorr in strict mode and
-    // will throw
-    "react/jsx-no-duplicate-props": 2,
-
-    "react/sort-comp": [1, { order: [
-      'lifecycle',
-      'render',
-      'everything-else',
-    ], groups: {
-        lifecycle: [
-          'displayName',
-          'propTypes',
-          'contextTypes',
-          'childContextTypes',
-          'statics',
-          'defaultProps',
-          'mixins',
-          'constructor',
-          'getDefaultProps',
-          'getInitialState',
-          'getChildContext',
-          'componentWillMount',
-          'componentDidMount',
-          'componentWillReceiveProps',
-          'shouldComponentUpdate',
-          'componentWillUpdate',
-          'componentDidUpdate',
-          'componentWillUnmount'
-        ]
-      }}
-    ],
-
-  }
+  },
 }
