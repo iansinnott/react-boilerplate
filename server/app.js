@@ -6,11 +6,13 @@ import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 
 import HttpError from './lib/HttpError.js';
-import config from '../webpack.config';
+import configProd from '../webpack.config.prod.js';
+import configDev from '../webpack.config.dev.js';
 import api from './api';
 
 const app = express();
 const isDev = process.env.NODE_ENV === 'development';
+const config = isDev ? configDev : configProd;
 
 // Configure the server
 app.use(compression());
@@ -53,7 +55,7 @@ const Index = React.createClass({
   render() {
     return (
       <Layout>
-        <script src={app.get('scriptPath') + 'app.js'}></script>
+        <script src={app.get('publicPath') + 'app.js'}></script>
       </Layout>
     );
   },
