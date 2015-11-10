@@ -8,6 +8,10 @@
     // Single quotes on JSX components
     "jsx-quotes": [2, "prefer-single"],
 
+    // Omitting curly braces is fine as long as there is only one line under the
+    // statement
+    "curly": [2, "multi-or-nest"],
+
     // Having unsed args is allowed b/c its good for consistency and reminding
     // what vars are available. Ex: (req, res, next) => { res.send(/* ... */) }
     "no-unused-vars": [1, {"vars": "all", "args": "none"}],
