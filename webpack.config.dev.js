@@ -9,14 +9,14 @@ module.exports = {
   entry: {
     app: [
       'webpack-hot-middleware/client',
-      './src/index'
+      './client/index.js'
     ]
   },
 
   output: {
     path: path.join(__dirname, 'public'),
     filename: '[name].js',
-    publicPath: '/static/'
+    publicPath: '/public/'
   },
 
   plugins: [
@@ -29,7 +29,7 @@ module.exports = {
       {
         test: /\.js$/,
         loaders: ['babel'],
-        include: path.join(__dirname, 'src')
+        include: path.join(__dirname, 'client')
       },
       {
         test: /\.css$/,

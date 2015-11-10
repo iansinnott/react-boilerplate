@@ -7,12 +7,12 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = {
   devtool: 'source-map',
   entry: {
-    app: ['./src/index']
+    app: ['./client/index.js']
   },
   output: {
     path: path.join(__dirname, 'public'),
     filename: '[name].js',
-    publicPath: '/static/'
+    publicPath: '/public/'
   },
   plugins: [
     new ExtractTextPlugin('[name].css', { allChunks: true }),
@@ -33,7 +33,7 @@ module.exports = {
       {
         test: /\.js$/,
         loaders: ['babel'],
-        include: path.join(__dirname, 'src')
+        include: path.join(__dirname, 'client')
       },
       {
         test: /\.css$/,
