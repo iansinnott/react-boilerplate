@@ -12,7 +12,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'public'),
     filename: '[name].js',
-    publicPath: '/public/'
+    publicPath: '/'
   },
   plugins: [
     new ExtractTextPlugin('[name].css', { allChunks: true }),
