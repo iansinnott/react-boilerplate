@@ -1,6 +1,4 @@
 node_modules/
 *.DS_Store
-_assets/
 public/
-.db/
 .tmp/
