@@ -184,6 +184,10 @@ It is currently possible to easily run Mongo in the background during developmen
 
 One of the gotchas of the hot react loader seems to be that it will not hot work with files in the root of the client directory. If you edit `client/index.js` or `client/Router.js` it will not do a live reload, you will have to to it manually.
 
+#### Babel + Transforms
+
+Turns out that using transforrms for HMR is great until you start using `babel-core/register`. This is because the same HMR code gets inejected into server code and breaks everything. To avoid this we make use of `BABEL_ENV` to trick babel into running in production mode even when NODE_ENV is still set to dev
+
 [React]: http://facebook.github.io/react/
 [Webpack]: http://webpack.github.io/
 [Babel]: https://babeljs.io/

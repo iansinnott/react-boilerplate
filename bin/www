@@ -1,5 +1,4 @@
-#!/usr/bin/env node --harmony
-'use strict';
+#!/usr/bin/env node
 
 var app = require('../server');
 var db = require('../server/config/database.js');
