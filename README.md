@@ -58,6 +58,10 @@ This repo also comes with a fully-functional back-end implemented in Node with E
 
 [api]: https://github.com/iansinnott/react-boilerplate/blob/master/server/api.js
 
+### Recommend additions
+
+On most projects I end up pulling in both [React Router][] and one of either [Nuclear JS][] or [Redux][] as the Flux implementation.
+
 ## Usage
 
 **Warning:** This section is actively changing and will look very different once this repository has been converted into an NPM module.
@@ -110,7 +114,6 @@ This of course goes for CSS or any of it's preprocessors. You can even apply thi
 
 - [x] ~~Production tooling~~
 - [x] Multiple database support
-- [ ] Available as a module
 - [ ] Run production DB in dev
 - [ ] Testing boilerplate
 - [ ] Type Safety
@@ -192,4 +195,6 @@ Turns out that using transforrms for HMR is great until you start using `babel-c
 [core.typed]: https://github.com/clojure/core.typed
 [TypeScript]: https://github.com/Microsoft/TypeScript 
 [Flow]: http://flowtype.org/
+[Nuclear JS]: https://github.com/optimizely/nuclear-js
+[Redux]: https://github.com/rackt/redux
 
