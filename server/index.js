@@ -1,6 +1,3 @@
-/**
- * Even if using 4.x there are still ES6 features missing from node so we use
- * babel server side.
- */
+// Even if using 4.x for ES6 support we still need JSX support, so Babel.
 require('babel-core/register');
 module.exports = require('./app');

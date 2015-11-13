@@ -27,65 +27,54 @@ app.use(bodyParser.json());
 // Set public path which will be exposed to jade views
 app.set('publicPath', config.output.publicPath);
 
+/**
+ * App layout
+ */
+const Layout = props => (
+  <html>
+    <head>
+      <meta charSet='utf-8' />
+      <meta name='viewport' content='width=device-width, initial-scale=1' />
+      <link rel='shortcut icon' href='/favicon.ico' />
+      {!isDev && <link rel='stylesheet' href='/app.css' />}
+    </head>
+    <body>
+      <div id='root' />
+      {props.children}
+    </body>
+  </html>
+);
+
+/**
+ * Index page
+ */
+const Index = props => (
+  <Layout>
+    <script src={app.get('publicPath') + 'app.js'}></script>
+  </Layout>
+);
+
+/**
+ * 404 Template
+ */
+const NotFound = props => (
+  <Layout>
+    <h1>Not found</h1>
+    {props.message && <pre>{props.message}</pre>}
+  </Layout>
+);
+
 // Mount the API (note that we MUST pass app to all router middleware)
 app.use('/api', api(app));
 
-const Layout = React.createClass({
-  propTypes: {
-    children: React.PropTypes.any,
-  },
-  render() {
-    return (
-      <html>
-        <head>
-          <meta charSet='utf-8' />
-          <meta name='viewport' content='width=device-width, initial-scale=1' />
-          <link rel='shortcut icon' href='/favicon.ico' />
-          {!isDev && <link rel='stylesheet' href='/app.css' />}
-        </head>
-        <body>
-          <div id='root' />
-          {this.props.children}
-        </body>
-      </html>
-    );
-  },
-});
-
-const Index = React.createClass({
-  render() {
-    return (
-      <Layout>
-        <script src={app.get('publicPath') + 'app.js'}></script>
-      </Layout>
-    );
-  },
-});
-
-
-const NotFound = React.createClass({
-  propTypes: {
-    message: React.PropTypes.string,
-  },
-  render() {
-    return (
-      <Layout>
-        <h1>Not found</h1>
-        {this.props.message && <pre>{this.props.message}</pre>}
-      </Layout>
-    );
-  },
-});
-
-
 // Send the boilerplate HTML file down for all get requests that aren't to the
 // API.
-app.get('*', (req, res) => {
+app.get('/', (req, res) => {
   res.send('<!doctype html>' + renderToStaticMarkup(<Index />));
 });
 
 // 404
-app.use((req, res, next) => next(new HttpError('Page Not Found', 404)));
+app.use((req, res, next) => next(new HttpError('Not Found', 404)));
 
 // API error handling (returns JSON)
 app.use('/api', (err, req, res, next) => {

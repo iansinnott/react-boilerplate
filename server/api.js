@@ -1,10 +1,7 @@
 /**
  * @module api
  *
- * API Controller. This is an example API to get you started. Below you will see
- * me using the new es7 functional bind syntax `::res.send`. If you're not
- * fammiliar with this, it is the equivalent of saying `res.send.bind(res)`. See
- * this article for more info: https://github.com/zenparsing/es-function-bind
+ * API Controller. This is an example API to get you started.
  */
 import { Router } from 'express';
 
