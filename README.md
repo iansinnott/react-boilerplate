@@ -2,6 +2,15 @@
 
 A boilerplate for building web applications with Node.js
 
+**Usage:**
+
+* `git clone https://github.com/iansinnott/react-boilerplate && cd react-boilerplate`
+* `npm install && npm start` to run a dev server
+* Write an awesome app with Node and React...
+* `npm build` to minify and package everything
+
+Now you're all set to deploy to your favorite hosting solution :beers:
+
 ## The Stack
 
 **Client Side:**
@@ -21,7 +30,7 @@ A boilerplate for building web applications with Node.js
 
 This project is a dynamic view of my thoughts on developing applications for the web, developer experience (DX), tooling and deployment strategies.
 
-The two driving philosophies I try to embrace in this project are:
+The three driving philosophies I try to embrace in this project are:
 
 * Don't do anything the computer can do for you
 * DX is positively correlated with UX, maintainability and stability
@@ -54,11 +63,11 @@ This repo also comes with a fully-functional back-end implemented in Node with E
 **Warning:** This section is actively changing and will look very different once this repository has been converted into an NPM module.
 
 ```bash
-$ git cloneo --depth 1 https://github.com/iansinnott/react-boilerplate <new-project>
+$ git clone https://github.com/iansinnott/react-boilerplate <new-project>
 $ cd <new-project>
 $ rm -rf .git
 $ npm install
-$ gulp
+$ npm start
 ```
 
 Be sure to replace `<new-project>` with the name of the project you want to create.
@@ -86,20 +95,6 @@ To quickly and easily get up and running with Waterline here is some useful info
 
 [Validations]: https://github.com/balderdashy/anchor/blob/master/lib/match/rules.js
 [readme]: https://github.com/balderdashy/waterline
-
-## MongoDB
-
-The default method of persistence is MongoDB. By default app data will be stored locally in `./db`. By default running `gulp` will also run a `mongod` process in the background for your app to communicate with. If you would like to run your own `mongod` process, perhaps to configure it according to your needs then you can do so. Simply run your `mongod` process and call `gulp nodemon webpack` to bypass the Gulp-ified `mongod` process.
-
-## Postgres
-
-**Update:** Postgres is not yet implemented. It is a work in progress pending migrating away from Mongoose and to Waterline as the ORM.
-
-To get postgres up and running on a mac make sure you can run the following command:
-
-```
-postgres -D /usr/local/var/postgres
-```
 
 ## Reasons to use React + Webpack
 
@@ -172,11 +167,7 @@ Clone a git repo and completely removing the repo part once it's downloaded is s
 
 This is fairly vague because there is not currently one surefire way to deploy every type of application you might want. Maybe you want to run on AWS. Maybe it's a static site and you're happy hosting on Surge.sh. The problem is there isn't just one way, so it's hard to define a `deploy` command that's both effective and flexible.
 
-The solution I propose is to create a Dockerfile that can be used to build an app that can run anywhere Docker is running.
-
-### Running a production database in dev
-
-It is currently possible to easily run Mongo in the background during development using `gulp mongod`. I'd like to add similar support for Postgres and make it easy to switch between the two.
+The solution I'm leaning towards is to create a Dockerfile that can be used to build an app that can run anywhere Docker is running.
 
 ## Troubleshooting
 
