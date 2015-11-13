@@ -4,6 +4,9 @@ import 'font-awesome-webpack';
 
 import s from './App.styl';
 
+// Favicon link is created server-side, this is just make webpack package it
+import './favicon.ico';
+
 const ReactBoilerplate = props => (
   <div className={s.ReactBoilerplate}>
    <h1>React Boilerplate</h1>
