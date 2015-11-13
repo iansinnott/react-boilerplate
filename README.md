@@ -1,4 +1,4 @@
-# React + Webpack Boilerplate
+# React + Webpack + Hot Reloading
 
 A boilerplate for building web applications with Node.js
 
