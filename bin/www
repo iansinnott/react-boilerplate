@@ -10,7 +10,7 @@ waterline.initialize(config, function(err, models) {
   app.models = models.collections;
   app.connections = models.connections;
   app.listen(app.get('port'), function() {
-    console.log('App server listening on port', app.get('port'));
+    console.log(`Web server listening at http://localhost:${app.get('port')}`);
   });
 });
 
