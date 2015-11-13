@@ -2,7 +2,7 @@ import React from 'react';
 import 'normalize.css';
 import 'font-awesome-webpack';
 
-import s from './App.sass';
+import s from './App.styl';
 
 const ReactBoilerplate = props => (
   <div className={s.ReactBoilerplate}>

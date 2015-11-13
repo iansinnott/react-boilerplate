@@ -1,7 +1,8 @@
-/* eslint-disable */
+/* eslint-disable no-var */
 var path = require('path');
 var webpack = require('webpack');
-var autoprefixer = require('autoprefixer');
+var axis = require('axis');
+var rupture = require('rupture');
 
 // Set up dev host host and HMR host. For the dev host this is pretty self
 // explanatory: We use a different live-reload server to server our static JS
@@ -19,19 +20,19 @@ module.exports = {
   entry: {
     app: [
       'webpack-hot-middleware/client?path=' + HMR_HOST,
-      './client/index.js'
-    ]
+      './client/index.js',
+    ],
   },
 
   output: {
     path: path.join(__dirname, 'public'),
     filename: '[name].js',
-    publicPath: DEV_HOST
+    publicPath: DEV_HOST,
   },
 
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
   ],
 
   module: {
@@ -39,37 +40,37 @@ module.exports = {
       {
         test: /\.js$/,
         loaders: ['babel'],
-        include: path.join(__dirname, 'client')
+        include: path.join(__dirname, 'client'),
       },
       {
         test: /\.css$/,
         loaders: ['style', 'css'],
       },
       {
-        test: /\.sass$/,
+        test: /\.styl/,
         loaders: [
           'style',
           'css?modules&importLoaders=2&localIdentName=[name]__[local]__[hash:base64:6]',
-          'postcss',
-          'sass?indentedSyntax'
-        ]
+          'autoprefixer',
+          'stylus',
+        ],
       },
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loaders: ['url?limit=10000&mimetype=application/font-woff']
+        loaders: ['url?limit=10000&mimetype=application/font-woff'],
       },
       {
         test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loaders: ['file']
+        loaders: ['file'],
       },
       {
         test: /\.(png|jpg|gif)$/,
-        loaders: ['file?name=[name].[ext]']
+        loaders: ['file?name=[name].[ext]'],
       },
-    ]
+    ],
   },
 
-  postcss: [
-    autoprefixer({ browsers: ['last 2 versions', 'ie >= 10'] })
-  ]
+  stylus: {
+    use: [axis(), rupture()],
+  },
 };
