@@ -2,7 +2,7 @@
 
 A boilerplate for building web applications with Node.js
 
-**Usage:**
+**Quick Start:**
 
 * `git clone https://github.com/iansinnott/react-boilerplate && cd react-boilerplate`
 * `npm install && npm start` to run a dev server
