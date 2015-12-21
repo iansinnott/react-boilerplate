@@ -5,6 +5,8 @@
  */
 import { Router } from 'express';
 
+import HttpError from './lib/HttpError.js';
+
 /**
  * @exports apiWrapper
  *
@@ -55,6 +57,15 @@ export default function apiWrapper(app) {
     app.models.thing.destroy({ id: req.params.id })
       .then(data => res.send(data))
       .catch(next);
+  });
+
+  // API 404
+  api.use((req, res, next) => next(new HttpError('Not Found', 404)));
+
+  // API error handling (returns JSON)
+  api.use((err, req, res, next) => {
+    const data = app.get('isDev') ? { message: err.message } : {};
+    res.status(err.status || 500).send(data);
   });
 
   return api;

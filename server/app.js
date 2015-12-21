@@ -5,7 +5,6 @@ import compression from 'compression';
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 
-import HttpError from './lib/HttpError.js';
 import configProd from '../webpack.config.prod.js';
 import configDev from '../webpack.config.dev.js';
 import api from './api';
@@ -20,6 +19,7 @@ app.use(express.static('public', { index: false })); // Not using a full path is
 app.set('view engine', 'jade');
 app.set('views', 'server/views');
 app.set('port', process.env.PORT || 3000);
+app.set('isDev', isDev);
 app.use(morgan(isDev ? 'dev' : 'combined'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -44,6 +44,7 @@ const Layout = props => (
     </body>
   </html>
 );
+Layout.propTypes = { children: React.PropTypes.any.isRequired };
 
 /**
  * Index page
@@ -63,6 +64,7 @@ const NotFound = props => (
     {props.message && <pre>{props.message}</pre>}
   </Layout>
 );
+NotFound.propTypes = { message: React.PropTypes.string };
 
 // Mount the API (note that we MUST pass app to all router middleware)
 app.use('/api', api(app));
@@ -71,15 +73,6 @@ app.use('/api', api(app));
 // API. This lets us route on the client side w/ React Router (or whatever)
 app.get('*', (req, res) => {
   res.send('<!doctype html>' + renderToStaticMarkup(<Index />));
-});
-
-// 404
-app.use((req, res, next) => next(new HttpError('Not Found', 404)));
-
-// API error handling (returns JSON)
-app.use('/api', (err, req, res, next) => {
-  const data = isDev ? { message: err.message } : {};
-  res.status(err.status || 500).send(data);
 });
 
 // General error handling
