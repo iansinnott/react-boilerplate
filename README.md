@@ -110,6 +110,18 @@ For example, as you change your JSX you can see it live-update in the browser th
 
 This of course goes for CSS or any of it's preprocessors. You can even apply this to files like markdown and see your site update as you edit the text. For example, every time I save this file I see the live preview in the browser update automatically without reloading the page. Magic!
 
+## Dependencies
+
+In `package.json` only server dependencies will be found under `dependencies`. All client-side dependencies will be found under `devDependencies`.
+
+The reasoning here is that in prod we will have a compiled and minified JS file
+along with a similar CSS file. Since these are precompiled we don't actually
+need any of the dev deps in that environment.
+
+However it should be noted that 'devDependencies' is misleading, since those
+deps are actually _build_ dependencies. I may rethink this strategy later, but
+for now only server side deps make the cut for `dependencies`.
+
 ## Yet to come
 
 - [x] ~~Production tooling~~
