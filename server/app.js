@@ -10,7 +10,7 @@ import configProd from '../webpack.config.prod.js';
 import configDev from '../webpack.config.dev.js';
 import api from './api';
 
-const app = express();
+export const app = express();
 const isDev = process.env.NODE_ENV === 'development';
 const config = isDev ? configDev : configProd;
 
