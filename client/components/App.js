@@ -9,8 +9,8 @@ import './favicon.ico';
 
 const ReactBoilerplate = props => (
   <div className={s.ReactBoilerplate}>
-   <h1>React Boilerplate</h1>
-   <p>Get that app up and running in no time</p>
+    <h1>React Boilerplate</h1>
+    <p>Get that app up and running in no time</p>
   </div>
 );
 
