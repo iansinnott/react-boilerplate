@@ -2,6 +2,8 @@
 
 A boilerplate for building web applications with Node.js
 
+Partially inspired by [React Transform Boilerplate](https://github.com/gaearon/react-transform-boilerplate)
+
 **Quick Start:**
 
 * `git clone https://github.com/iansinnott/react-boilerplate && cd react-boilerplate`
