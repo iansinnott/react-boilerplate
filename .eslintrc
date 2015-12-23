@@ -1,5 +1,6 @@
 {
   "extends": "airbnb",
+  "parser": "babel-eslint",
   "rules": {
 
     // Babel handles strict for us so it should never be manually added
@@ -8,9 +9,15 @@
     // Single quotes on JSX components
     "jsx-quotes": [2, "prefer-single"],
 
+    // Indent 2 spaces always
+    "indent": [2, 2],
+
     // Omitting curly braces is fine as long as there is only one line under the
     // statement
     "curly": [2, "multi-or-nest"],
+
+    // Console can be useful and can also be stripped about by webpack in prod
+    "no-console": [0],
 
     // Don't require a `new` keyword when calling capitalized functons. Ex:
     // Immutable.Map({})
